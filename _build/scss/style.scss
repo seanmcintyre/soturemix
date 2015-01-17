@@ -1,0 +1,112 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #000;
+}
+
+textarea, input { outline: none; }
+
+header {
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+	background-color: #3479a5;
+}
+
+.thumbs {
+	width: 66.66%;
+	display: block;
+	margin: 10vh auto;
+	img {
+		width: 30%;
+		height: 10%;
+	}
+}
+
+.infoBar {
+	margin: 0 auto;
+	display: block;
+	width: 66.66%;
+	overflow: hidden;
+	padding: 10px 0;
+	.charCount {
+		line-height: 3vw;
+		font-size: 2vw;
+		font-family: 'Georgia', serif;
+		color: #FFF;
+		margin: 0 auto;
+		display: block;
+		width: 50%;
+		float: left;
+	}
+	button {
+		float: right;
+		line-height: 3vw;
+		font-size: 2vw;
+		font-family: 'Georgia', serif;
+	}
+}
+
+.the-script {
+	resize: none;
+	overflow: hidden;
+	font-size: 3.5vw;
+	font-family: 'Georgia', serif;
+	border: 0;
+	margin: 0 auto;
+	display: block;
+	margin-top: 30px;
+	width: 66.66%;
+	min-height: 800px;
+	line-height: 4.6vw;
+	color: #FFF;
+	background-color: transparent;
+	border-bottom: 2px solid red;
+	transition: all 0.3s;
+	margin-bottom: 60px;
+	z-index: 100;
+	position: absolute;
+	left: 16.6666%;
+
+	&:active {
+		outline: 0;
+		border: 0;
+	}
+}
+
+.dropdown-menu {
+	font-size: 2.5vw;
+	letter-spacing: 0.1vw;
+	line-height: 3.3vw;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #000;
+	color: #dadada;
+	list-style: none;
+	padding: 0;
+	margin: 2vw 0 2vw -3vw;
+
+	.textcomplete-item a{
+		width: auto;
+		padding: 3px 10px;
+		margin: 10px 0;
+	}
+
+	.textcomplete-item.active a{
+		border-radius: 5px;
+		background: #3f3f3f;
+		color: #dadada;
+	}
+}
+
+.cursor {
+	margin-top: 3.8vw;
+	height: 2px;
+	width: 10px;
+	left: 16.6666%;
+	width: 66.66%;
+	background: red;
+	position: absolute;
+	z-index: 50;
+}
