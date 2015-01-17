@@ -4,6 +4,10 @@ html, body {
 	background-color: #000;
 }
 
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
 textarea, input { outline: none; }
 
 header {
@@ -74,6 +78,11 @@ header {
 }
 
 .dropdown-menu {
+	max-width: 25vw;
+	max-height: 33vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border-radius: 4px;
 	font-size: 2.5vw;
 	letter-spacing: 0.1vw;
 	line-height: 3.3vw;
@@ -85,11 +94,16 @@ header {
 	list-style: none;
 	padding: 0;
 	margin: 2vw 0 2vw -3vw;
+	border: 1px solid #FFF;
 
+	.textcomplete-item {
+		width: 100%;
+	}
 	.textcomplete-item a{
-		width: auto;
+		display: block;
+		width: 100%;
 		padding: 3px 10px;
-		margin: 10px 0;
+		margin: 0 0 3px;
 	}
 
 	.textcomplete-item.active a{

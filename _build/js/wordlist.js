@@ -33,13 +33,21 @@ $('textarea').textcomplete([
 // Disable linebreaks, and disable spacebar unless a matching word or
 // phrase exists.  Enter and spacebar will autocomplete selected word.
 // Allow spaces after periods.
+var lastKeys = [0,0];
 $('textarea').keypress(function(event) {
+    lastKeys.push(event.keyCode);
+    lastKeys.shift();
+    console.log(lastKeys);
     if (event.keyCode == 13) {
         event.preventDefault();
-    } else if (event.keyCode == 32) {
+    } else if (event.keyCode == 32 && lastKeys[0] != 46) {
         event.preventDefault();
     }
 });
+
+//
+// completeOnSpace must be set to true in textcomplete.js
+//
 
 // TODO
 // Make the textarea a little more magical

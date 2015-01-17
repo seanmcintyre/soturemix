@@ -5,7 +5,6 @@ var 	gulp = require('gulp'),
 			concat = require('gulp-concat'),
 			uglify = require('gulp-uglify'),
 			rename = require('gulp-rename'),
-			//connect = require('gulp-connect'),
 			browserSync = require('browser-sync'),
 			autoprefixer = require('gulp-autoprefixer'),
 			minifyCSS = require('gulp-minify-css');
