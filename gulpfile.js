@@ -63,4 +63,4 @@ gulp.task('serve', ['browser-sync'], function() {
 	gulp.watch('_build/html/**', ['html']);
 });
 
-gulp.task('build', ['scss', 'js', 'html', 'watch']);
+gulp.task('build', ['scss', 'js', 'html']);
