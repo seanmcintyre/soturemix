@@ -32,6 +32,7 @@ $('textarea').textcomplete([
 // TODO
 // Disable linebreaks, and disable spacebar unless a matching word or
 // phrase exists.  Enter and spacebar will autocomplete selected word.
+// Allow spaces after periods.
 $('textarea').keypress(function(event) {
     if (event.keyCode == 13) {
         event.preventDefault();
