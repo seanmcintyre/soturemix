@@ -5,7 +5,6 @@ Callbacks conform to the nodejs async standard (err, result)
 
 ***/
 
-
 var $ = require('jquery-browserify');
 
 var DataManager = module.exports = {};

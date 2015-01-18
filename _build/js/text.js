@@ -1,5 +1,6 @@
 var $ = require('jquery-browserify');
 var DataManager = require('./lib/DataManager');
+var VideoPlayer  = require('./lib/HTMLVideoPlayer');
 
 var phrases = []; // will be filled in by network call
 var matches = [];
@@ -57,4 +58,12 @@ $('.add-phrase').keyup(function(event) {
 
     lastKey = event.keyCode;
 
+});
+
+var videoPlayer = new VideoPlayer($('#videoContainer'));
+videoPlayer.setClipsDirectory('./clips/');
+
+$('#vamanos').on('click', function () {
+    videoPlayer.load(remixedSOTU);
+    videoPlayer.playWhenReady();
 });
