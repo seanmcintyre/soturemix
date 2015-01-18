@@ -63,7 +63,7 @@ $('#vamanos').on('click', function () {
 
 $('#save').on('click', function () {
     var video = {
-        clips: remixedSOTU
+        clips: matches.matchList
     };
 
     DataManager.saveVideo(video, function (err, result) {
