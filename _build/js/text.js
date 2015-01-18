@@ -13,7 +13,8 @@ var $ = require('jquery-browserify');
 // };
 // var words = transcript.replace(/\s+/g, '-').replace(/[^a-zA-Z-]/g, '').toLowerCase().split('-').unique();
 
-var phrases = ['this is', 'a funny', 'bone tired', 'day in america', 'a united people', 'iran', 'pizza', 'with', 'for', 'and', 'my', 'republican friends', 'tomorrow'];
+var phrases = ['this is', 'a funny', 'bone tired', 'day in america', 'a united people',
+                'iran', 'pizza', 'with', 'for', 'and', 'my', 'republican friends', 'tomorrow'];
 // phrases = phrases.reduce(function(o, v, i) {
 //   o[v] = i+1;
 //   return o;
@@ -21,16 +22,23 @@ var phrases = ['this is', 'a funny', 'bone tired', 'day in america', 'a united p
 
 //var phrases = words;
 
-var matches = [];
 var lastKey;
 var remixedSOTU = [];
 
+var matches = [];
+var match = $('.match');
+var selectedMatch;
+var nextMatch;
+
+var text;
+var subStr;
+
 $('.add-phrase').keyup(function(event) {
-    var text = $(this).val();
+    text = $(this).val();
     matches = [];
 
     // Loop through phrases to display matches
-    var subStr = new RegExp(text);
+    subStr = new RegExp(text);
 
     if (text != '') {
         var phrase;
@@ -40,7 +48,7 @@ $('.add-phrase').keyup(function(event) {
             if (subStr.test(phrase) & matches.indexOf(text) === -1) {
                 matches.push(phrase);
                 if (phrase.length > 0) {
-                matchList = matchList + '<li>'+phrase+'</li>';
+                matchList = matchList + '<li class="match">'+phrase+'</li>';
                 }
             }
         }
@@ -52,12 +60,7 @@ $('.add-phrase').keyup(function(event) {
     // If user hits enter key
     if (event.keyCode == 13) {
         if (phrases.indexOf(text) > -1) {
-            $('.input').before('<li>'+text+'</li>');
-            remixedSOTU.push(text);
-            matches = [];
-            matchList = '';
-            $(this).val('')
-            console.log('The speech: ' , remixedSOTU);
+            addPhrase(text);
         }
     }
 
@@ -70,6 +73,42 @@ $('.add-phrase').keyup(function(event) {
         }
     }
 
+    if (event.keyCode == 40) {
+        selectedMatch = $('.match.selected');
+        match = $('.match');
+
+        console.log('---');
+        console.log('down!');
+
+        if (selectedMatch.length > 0) {
+            console.log('selected');
+            // selectedMatch.removeClass('selected');
+            // nextMatch = selectedMatch.next();
+            // if (nextMatch.length > 0) {
+            //     selectedMatch = nextMatch.addClass('selected');
+            // } else {
+            //     selectedMatch = match.eq(0).addClass('selected');
+            // }
+        } else {
+            console.log('selecting first item');
+            selectedMatch = match.eq(0).addClass('selected');
+        }
+
+    }
+
     lastKey = event.keyCode;
 
 });
+
+$('.matches').on('click', '.match', function (){
+    addPhrase($(this)[0].innerText);
+});
+
+var addPhrase = function(phrase) {
+    $('.input').before('<li>'+phrase+'</li>');
+    remixedSOTU.push(phrase);
+    matches = [];
+    matchList = '';
+    console.log('The speech: ' , remixedSOTU);
+    $('.add-phrase').val('');
+}

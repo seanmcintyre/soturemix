@@ -195,5 +195,8 @@ header {
 		&:hover {
 			background-color: lighten(blue,30%);
 		}
+		&.selected {
+			background-color: lighten(green,20%);
+		}
 	}
 }
