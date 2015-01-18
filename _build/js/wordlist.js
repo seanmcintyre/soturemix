@@ -11,6 +11,12 @@ Array.prototype.unique = function() {
 };
 var words = transcript.replace(/\s+/g, '-').replace(/[^a-zA-Z-]/g, '').toLowerCase().split('-').unique();
 
+var phrases = ['this is', 'a funny', 'bone tired', 'day in america', 'a united people', 'iran', 'pizza', 'with', 'for', 'and', 'my', 'republican friends', 'tomorrow'];
+phrases = phrases.reduce(function(o, v, i) {
+  o[v] = i+1;
+  return o;
+}, {});
+
 // Textarea autocompletion
 $('textarea').textcomplete([
     {
@@ -27,6 +33,32 @@ $('textarea').textcomplete([
         }
     }
 ]);
+// TAG IT (alternative)
+// $('textarea').tagit({
+//     availableTags: phrases
+// });
+
+var matches = [];
+$('.add-phrase').keypress(function(event) {
+    var text = $(this).val();
+
+    // Loop through phrases to display matches
+    phrases.forEach(function(){
+        //if (/yes/i.test(phrase)) {
+            console.log(phrase);
+        //}
+    });
+
+    // If user hits enter key
+    if (event.keyCode == 13) {
+        if (phrases[text] == true) {
+            console.log('correct phrase! : ' + text);
+            $('.test-two').prepend('<li>'+text+'</li>');
+        } else {
+            console.log('not a phrase! : ' + text);
+        }
+    }
+});
 
 
 // TODO

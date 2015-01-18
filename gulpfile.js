@@ -24,7 +24,7 @@ gulp.task('js', function() {
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish))
 		.pipe(concat('site.js'))
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest('app/js/'))
 		//.pipe(connect.reload());
 		.pipe(browserSync.reload({stream:true}));
