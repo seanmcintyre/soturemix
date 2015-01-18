@@ -20,10 +20,10 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('js', function() {
-	return gulp.src('_build/js/*.js')
+	return gulp.src('_build/js/**')
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish))
-		.pipe(concat('site.js'))
+		// .pipe(concat('site.js'))
 		//.pipe(uglify())
 		.pipe(gulp.dest('app/js/'))
 		//.pipe(connect.reload());
