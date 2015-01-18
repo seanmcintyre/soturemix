@@ -4,15 +4,20 @@ var matches = {
     match: $('.match'),
     newMatch: '',
     prevMatch: '',
-    selectedMatct: '',
+    selectedMatch: '',
     selectedMatchText: '',
-    selectPrevMatch: function() {
+    selectMatch: function(direction) {
         this.selectedMatch = $('.match.selected');
         this.match = $('.match');
 
         if (this.selectedMatch.length > 0) {
             this.selectedMatch.removeClass('selected');
-            this.prevMatch = this.selectedMatch.prev();
+
+            if (direction === 'prev') {
+                this.prevMatch = this.selectedMatch.prev();
+            } else {
+                this.prevMatch = this.selectedMatch.next();
+            }
 
             if (this.prevMatch.length > 0) {
                 this.prevMatch.addClass('selected');
@@ -30,31 +35,35 @@ var matches = {
             this.match.eq(0).addClass('selected');
         }
     },
+    checkSelected: function(phrase) {
+        if (this.selectedMatchText === phrase) {
+            return true;
+        }
+    },
+    findMatches: function(inputText, phrases) {
+        console.log('looking for matches');
+        if (inputText !== '') {
+            this.html = '';
+            for (var i = 0; i < phrases.length; i++) {
+                phrase = phrases[i];
+                if (inputText.test(phrase) & this.matchList.indexOf(inputText) === -1) {
+                    this.matchList.push(phrase);
+
+                    if (phrase.length > 0) {
+                        if (this.checkSelected(phrase) === true) {
+                            this.html = this.html + '<li class="match selected">'+phrase+'</li>';
+                        } else {
+                            this.html = this.html + '<li class="match">'+phrase+'</li>';
+                        }
+                    }
+
+                }
+            }
+            $('.matches').html(this.html);
+        } else {
+            $('.matches').html('');
+        }
+    }
 };
 
 module.exports = matches;
-
-var selectNextMatch = function() {
-    selectedMatch = $('.match.selected');
-    match = $('.match');
-
-    if (selectedMatch.length > 0) {
-        selectedMatch.removeClass('selected');
-        nextMatch = selectedMatch.next();
-
-        if (nextMatch.length > 0) {
-            nextMatch.addClass('selected');
-            selectedMatch = nextMatch.eq(0);
-            selectedMatchText = nextMatch.eq(0).text();
-        } else {
-            selectedMatch = match.eq(0);
-            selectedMatchText = match.eq(0).text();
-            match.eq(0).addClass('selected');
-        }
-
-    } else {
-        selectedMatch = match.eq(0);
-        selectedMatchText = match.eq(0).text();
-        match.eq(0).addClass('selected');
-    }
-};

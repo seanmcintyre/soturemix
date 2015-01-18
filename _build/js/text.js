@@ -1,7 +1,10 @@
 var $ = require('jquery-browserify');
 var theSpeech = require('./theSpeech');
+var matches = require('./matches');
 var DataManager = require('./lib/DataManager');
 var VideoPlayer  = require('./lib/HTMLVideoPlayer');
+
+window.foo = 'bar';
 
 // TODO
 // No need to parse transcript into array in production.
@@ -18,11 +21,11 @@ var VideoPlayer  = require('./lib/HTMLVideoPlayer');
 var lastKey;
 
 var phrases = []; // will be filled in by network call
-var matches = [];
-var match = $('.match');
-var selectedMatch;
-var selectedMatchText;
-var newMatch;
+// var matches = [];
+// var match = $('.match');
+// var selectedMatch;
+// var selectedMatchText;
+// var newMatch;
 
 var text;
 var subStr;
@@ -38,35 +41,33 @@ DataManager.getAvailablePhrases(function (err, availablePhrases) {
 });
 
 $('.add-phrase').keyup(function(event) {
+
     text = $(this).val();
-    matches = [];
+    matches.matchList = [];
 
     // Loop through phrases to display matches
     subStr = new RegExp(text);
-    findMatches(subStr);
+    matches.findMatches(subStr, phrases);
 
     // enter key
     if (event.keyCode == 13 && phrases.indexOf(text) > -1) {
         theSpeech.addPhrase(text);
     }
     if (event.keyCode == 13 && phrases.indexOf(text) == -1) {
-        selectedMatch = $('.match.selected');
-        selectedMatchText = selectedMatch.text();
-        match = $('.match');
-        theSpeech.addPhrase(selectedMatchText);
+        matches.selectedMatchText = matches.selectedMatch.text();
+        theSpeech.addPhrase(matches.selectedMatchText);
     }
-
     // backspace key
     if( event.keyCode == 8 ) {
         theSpeech.removeLastPhrase(text, lastKey);
     }
     // down/right arrow keys
     if (event.keyCode == 40 || event.keyCode == 39) {
-        selectNextMatch();
+        matches.selectMatch('next');
     }
     // up/left arrow keys
     if (event.keyCode == 38 || event.keyCode == 37) {
-        selectPrevMatch();
+        matches.selectMatch('prev');
     }
     // Backspace manager
     if (text.length == 0) {
@@ -74,93 +75,11 @@ $('.add-phrase').keyup(function(event) {
     } else {
         lastKey = null;
     }
-
 });
 
 $('.matches').on('click', '.match', function (){
     theSpeech.addPhrase($(this)[0].innerText);
 });
-
-var findMatches = function(text) {
-    if (text !== '') {
-        var phrase;
-        var matchList = '';
-        for (var i = 0; i < phrases.length; i++) {
-            phrase = phrases[i];
-            if (subStr.test(phrase) & matches.indexOf(text) === -1) {
-                matches.push(phrase);
-
-                if (phrase.length > 0) {
-                    if (checkSelected(phrase) === true) {
-                        matchList = matchList + '<li class="match selected">'+phrase+'</li>';
-                    } else {
-                        matchList = matchList + '<li class="match">'+phrase+'</li>';
-                    }
-                }
-
-            }
-        }
-        $('.matches').html(matchList);
-    } else {
-        $('.matches').html('');
-    }
-};
-
-var checkSelected = function(phrase) {
-    if (selectedMatchText === phrase) {
-        return true;
-    }
-};
-
-var selectNextMatch = function() {
-    selectedMatch = $('.match.selected');
-    match = $('.match');
-
-    if (selectedMatch.length > 0) {
-        selectedMatch.removeClass('selected');
-        nextMatch = selectedMatch.next();
-
-        if (nextMatch.length > 0) {
-            nextMatch.addClass('selected');
-            selectedMatch = nextMatch.eq(0);
-            selectedMatchText = nextMatch.eq(0).text();
-        } else {
-            selectedMatch = match.eq(0);
-            selectedMatchText = match.eq(0).text();
-            match.eq(0).addClass('selected');
-        }
-
-    } else {
-        selectedMatch = match.eq(0);
-        selectedMatchText = match.eq(0).text();
-        match.eq(0).addClass('selected');
-    }
-};
-
-var selectPrevMatch = function() {
-    selectedMatch = $('.match.selected');
-    match = $('.match');
-
-    if (selectedMatch.length > 0) {
-        selectedMatch.removeClass('selected');
-        prevMatch = selectedMatch.prev();
-
-        if (prevMatch.length > 0) {
-            prevMatch.addClass('selected');
-            selectedMatch = prevMatch.eq(0);
-            selectedMatchText = prevMatch.eq(0).text();
-        } else {
-            selectedMatch = match.eq(0);
-            selectedMatchText = match.eq(0).text();
-            match.eq(0).addClass('selected');
-        }
-
-    } else {
-        selectedMatch = match.eq(0);
-        selectedMatchText = match.eq(0).text();
-        match.eq(0).addClass('selected');
-    }
-};
 
 var videoPlayer = new VideoPlayer($('#videoContainer'));
 videoPlayer.setClipsDirectory('./clips/');
@@ -169,3 +88,5 @@ $('#vamanos').on('click', function () {
     videoPlayer.load(theSpeech.text);
     videoPlayer.playWhenReady();
 });
+
+window.foo = 'bar';
