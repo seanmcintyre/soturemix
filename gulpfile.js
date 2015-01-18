@@ -56,7 +56,7 @@ gulp.task('watch', function() {
 
 gulp.task('default', []);
 
-gulp.task('serve', ['browser-sync'], function() {
+gulp.task('serve', ['build', 'browser-sync'], function() {
 	gulp.watch('_build/js/**', ['js']);
 	gulp.watch('_build/scss/**', ['scss']);
 	gulp.watch('_build/html/**', ['html']);

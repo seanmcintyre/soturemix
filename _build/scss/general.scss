@@ -134,7 +134,7 @@ header {
 	display: block;
 	margin-top: 30px;
 	width: 66.66%;
-	min-height: 800px;
+	min-height: 300px;
 	line-height: 4.6vw;
 	color: #000;
 	background-color: #FFF;
@@ -144,4 +144,26 @@ header {
 	position: absolute;
 	left: 16.6666%;
 	top: 1000px;
+}
+
+.matches {
+	resize: none;
+	overflow: hidden;
+	font-size: 3.5vw;
+	font-family: 'Georgia', serif;
+	border: 0;
+	margin: 0 auto;
+	display: block;
+	margin-top: 30px;
+	width: 66.66%;
+	min-height: 300px;
+	line-height: 4.6vw;
+	color: #000;
+	background-color: #FFF;
+	transition: all 0.3s;
+	margin-bottom: 60px;
+	z-index: 100;
+	position: absolute;
+	left: 16.6666%;
+	top: 1400px;
 }

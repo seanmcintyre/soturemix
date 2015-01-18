@@ -41,19 +41,25 @@ $('textarea').textcomplete([
 var matches = [];
 $('.add-phrase').keypress(function(event) {
     var text = $(this).val();
+    var textAndKey = text + String.fromCharCode(event.keyCode);
+    matches = [];
 
     // Loop through phrases to display matches
-    phrases.forEach(function(){
-        //if (/yes/i.test(phrase)) {
-            console.log(phrase);
-        //}
-    });
+    var subStr = new RegExp(textAndKey);
+    for (phrase in phrases) {
+        if (subStr.test(phrase) & matches.indexOf(textAndKey) === -1) {
+            matches.push(phrase);
+            console.log(matches);
+        }
+    }
+    $('.matches').text(matches);
 
     // If user hits enter key
     if (event.keyCode == 13) {
-        if (phrases[text] == true) {
+        if (phrases[text] > -1) {
             console.log('correct phrase! : ' + text);
             $('.test-two').prepend('<li>'+text+'</li>');
+            matches = [];
         } else {
             console.log('not a phrase! : ' + text);
         }
