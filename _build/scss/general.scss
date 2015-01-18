@@ -1,7 +1,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	background-color: #000;
+	background-color: #FFF;
 }
 
 *, *:before, *:after {
@@ -37,7 +37,7 @@ header {
 		line-height: 3vw;
 		font-size: 2vw;
 		font-family: 'Georgia', serif;
-		color: #FFF;
+		color: #000;
 		margin: 0 auto;
 		display: block;
 		width: 50%;
@@ -157,13 +157,15 @@ header {
 	li.input {
 		padding: 0;
 		padding: 3px 10px;
+		background-color: #FFF;
+		border-bottom: 1px solid #000;
 		input {
 			font-size: 3.5vw;
 			font-family: 'Georgia', serif;
 			border: 0;
 			outline: 0;
 			width: auto;
-			background: #EEE;
+			background: #FFF;
 			margin: 0;
 			padding: 0;
 		}
@@ -180,7 +182,7 @@ header {
 	display: block;
 	line-height: 4.6vw;
 	color: #000;
-	background-color: lighten(blue,15%);
+	background-color: transparent;
 	transition: all 0.3s;
 	margin-bottom: 60px;
 	z-index: 100;
@@ -188,7 +190,7 @@ header {
 
 	li {
 		background-color: lighten(blue,15%);
-		width: 100%;
+		width: auto;
 		display: block;
 		&:hover {
 			background-color: lighten(blue,30%);
