@@ -1,26 +1,6 @@
 var $ = require('jquery-browserify');
 
-// TODO
-// No need to parse transcript into array in production.
-// Do it once in development, and paste the array in statically.
-// Array.prototype.unique = function() {
-//     return this.reduce(function(accum, current) {
-//         if (accum.indexOf(current) < 0) {
-//             accum.push(current);
-//         }
-//         return accum;
-//     }, []);
-// };
-// var words = transcript.replace(/\s+/g, '-').replace(/[^a-zA-Z-]/g, '').toLowerCase().split('-').unique();
-
 var phrases = ['this is', 'a funny', 'bone tired', 'day in america', 'a united people', 'iran', 'pizza', 'with', 'for', 'and', 'my', 'republican friends', 'tomorrow'];
-// phrases = phrases.reduce(function(o, v, i) {
-//   o[v] = i+1;
-//   return o;
-// }, {});
-
-//var phrases = words;
-
 var matches = [];
 var lastKey;
 var remixedSOTU = [];
