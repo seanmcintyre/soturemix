@@ -22,21 +22,12 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('js', function() {
-	gulp.src('_build/js/video/video_test.js')
+	return gulp.src('_build/js/*.js')
 		.pipe(browserify({
 			debug: true
 		}))
-		.pipe(gulp.dest('app/js/video/'));
-
-
-	return gulp.src('_build/js/*.js')
-		.pipe(jshint())
-		.pipe(jshint.reporter(stylish))
-		// .pipe(concat('site.js'))
-		//.pipe(uglify())
 		.pipe(gulp.dest('app/js/'))
-		//.pipe(connect.reload());
-		.pipe(browserSync.reload({stream:true}));
+		.pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('scss', function() {
