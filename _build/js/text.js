@@ -1,4 +1,6 @@
 var $ = require('jquery-browserify');
+var DataManager = require('./lib/DataManager');
+var VideoPlayer  = require('./lib/HTMLVideoPlayer');
 
 // TODO
 // No need to parse transcript into array in production.
@@ -11,20 +13,11 @@ var $ = require('jquery-browserify');
 //         return accum;
 //     }, []);
 // };
-// var words = transcript.replace(/\s+/g, '-').replace(/[^a-zA-Z-]/g, '').toLowerCase().split('-').unique();
-
-var phrases = ['this is', 'a funny', 'bone tired', 'day in america', 'a united people',
-                'iran', 'pizza', 'with', 'for', 'and', 'my', 'republican friends', 'tomorrow'];
-// phrases = phrases.reduce(function(o, v, i) {
-//   o[v] = i+1;
-//   return o;
-// }, {});
-
-//var phrases = words;
 
 var lastKey;
 var remixedSOTU = [];
 
+var phrases = []; // will be filled in by network call
 var matches = [];
 var match = $('.match');
 var selectedMatch;
@@ -33,6 +26,16 @@ var nextMatch;
 var text;
 var subStr;
 
+DataManager.getAvailablePhrases(function (err, availablePhrases) {
+    phrases = availablePhrases;
+    // phrases = phrases.reduce(function(o, v, i) {
+    //   o[v] = i+1;
+    //   return o;
+    // }, {});
+    // var words = transcript.replace(/\s+/g, '-').replace(/[^a-zA-Z-]/g, '').toLowerCase().split('-').unique();
+    // var phrases = words;
+});
+
 $('.add-phrase').keyup(function(event) {
     text = $(this).val();
     matches = [];
@@ -40,7 +43,7 @@ $('.add-phrase').keyup(function(event) {
     // Loop through phrases to display matches
     subStr = new RegExp(text);
 
-    if (text != '') {
+    if (text !== '') {
         var phrase;
         var matchList = '';
         for (var i = 0; i < phrases.length; i++) {
@@ -112,3 +115,11 @@ var addPhrase = function(phrase) {
     console.log('The speech: ' , remixedSOTU);
     $('.add-phrase').val('');
 }
+
+var videoPlayer = new VideoPlayer($('#videoContainer'));
+videoPlayer.setClipsDirectory('./clips/');
+
+$('#vamanos').on('click', function () {
+    videoPlayer.load(remixedSOTU);
+    videoPlayer.playWhenReady();
+});

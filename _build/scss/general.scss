@@ -27,12 +27,20 @@ header {
 	}
 }
 
+#videoContainer {
+	width: 820px;
+	height: 460px;
+	position: relative;
+	margin: 0 auto;
+}
+
 .infoBar {
 	margin: 0 auto;
 	display: block;
 	width: 66.66%;
 	overflow: hidden;
 	padding: 10px 0;
+	position: relative;
 	.charCount {
 		line-height: 3vw;
 		font-size: 2vw;
@@ -141,9 +149,8 @@ header {
 	transition: all 0.3s;
 	margin-bottom: 60px;
 	z-index: 100;
-	position: absolute;
+	position: relative;
 	left: 16.6666%;
-	top: 400px;
 
 	li {
 		cursor: pointer;
