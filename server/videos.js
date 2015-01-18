@@ -61,7 +61,17 @@ module.exports = {
 			appName: config.appName
 		};
 
-		db.collection('videos').insert(video, callback);
+		db.collection('videos').insert(video, function (err, docs) {
+			if (err) {
+				return callback(err);
+			}
+
+			if (!docs || !docs.length || docs.length === 0) {
+				return callback(new Error('something went wrong'));
+			}
+
+			return callback(null, docs[0]);
+		});
 	},
 
 	// Async in case this involves a network call in the future

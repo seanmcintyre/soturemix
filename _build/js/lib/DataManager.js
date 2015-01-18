@@ -16,3 +16,15 @@ DataManager.getAvailablePhrases = function (callback) {
 		callback(null, response);
 	});
 };
+
+DataManager.saveVideo = function (video, callback) {
+	console.log(video);
+	$.ajax(ROOT_URL + '/videos', {
+		data: JSON.stringify(video),
+		type: 'POST',
+		contentType: 'application/json',
+		success: function (data) {
+			return callback(null, data);
+		}
+	});
+};

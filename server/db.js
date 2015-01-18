@@ -4,8 +4,8 @@ var mongo = require('mongodb'),
 var db;
 function connectionString (config) {
 	var str = 'mongodb://';
-	if (config.user && config.password) {
-		str += config.user + ':' + config.password;
+	if (config.user && config.pass) {
+		str += config.user + ':' + config.pass;
 	}
 	str += '@' + config.host;
 	str += ':' + config.port;

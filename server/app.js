@@ -7,7 +7,8 @@ app.use(require('body-parser').json());
 
 app.use(function (req, res, next) {
 	res.set({
-		'Access-Control-Allow-Origin': '*'
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Headers': 'Content-Type'
 	});
 	next();
 });
@@ -32,6 +33,7 @@ app.get('/videos/:id', function (req, res) {
 app.post('/videos', function (req, res) {
 	videos.save(req.body, function (err, doc) {
 		if (err) {
+			console.error(err);
 			res.send(500, {error: 'something went wrong'});
 		} else {
 			res.send(doc);

@@ -8,7 +8,8 @@ var 	gulp = require('gulp'),
 			browserSync = require('browser-sync'),
 			autoprefixer = require('gulp-autoprefixer'),
 			minifyCSS = require('gulp-minify-css'),
-			browserify = require('gulp-browserify');
+			browserify = require('gulp-browserify'),
+			child_process = require('child_process');
 
 // Static server
 gulp.task('browser-sync', function() {
@@ -57,6 +58,8 @@ gulp.task('watch', function() {
 gulp.task('default', []);
 
 gulp.task('serve', ['build', 'browser-sync'], function() {
+	child_process.fork('app.js', {cwd: './server'});
+
 	gulp.watch('_build/js/**', ['js']);
 	gulp.watch('_build/scss/**', ['scss']);
 	gulp.watch('_build/html/**', ['html']);

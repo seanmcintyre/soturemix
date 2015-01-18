@@ -186,3 +186,13 @@ $('#vamanos').on('click', function () {
     videoPlayer.load(remixedSOTU);
     videoPlayer.playWhenReady();
 });
+
+$('#save').on('click', function () {
+    var video = {
+        clips: remixedSOTU
+    };
+
+    DataManager.saveVideo(video, function (err, result) {
+        alert('saved with id ' + result._id);
+    });
+});
