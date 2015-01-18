@@ -19,5 +19,11 @@
     "gulp-jshint": "~1.9.0",
     "gulp-browserify": "~0.5.1",
     "jquery-browserify": "~1.8.1"
+  },
+  "dependencies": {
+    "mongodb": "~1.4.28",
+    "underscore": "~1.7.0",
+    "express": "~4.11.0",
+    "body-parser": "~1.10.1"
   }
 }

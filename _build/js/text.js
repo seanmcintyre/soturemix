@@ -83,6 +83,8 @@ $('.add-phrase').keyup(function(event) {
         console.log('---');
         console.log('down!');
 
+        console.log('Selectedmatch: ', selectedMatch);
+
         if (selectedMatch.length > 0) {
             console.log('selected');
             // selectedMatch.removeClass('selected');
