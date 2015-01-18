@@ -1,4 +1,5 @@
 var $ = require('jquery-browserify');
+var theSpeech = require('./theSpeech');
 var DataManager = require('./lib/DataManager');
 var VideoPlayer  = require('./lib/HTMLVideoPlayer');
 
@@ -15,7 +16,6 @@ var VideoPlayer  = require('./lib/HTMLVideoPlayer');
 // };
 
 var lastKey;
-var remixedSOTU = [];
 
 var phrases = []; // will be filled in by network call
 var matches = [];
@@ -47,18 +47,18 @@ $('.add-phrase').keyup(function(event) {
 
     // enter key
     if (event.keyCode == 13 && phrases.indexOf(text) > -1) {
-        addPhrase(text);
+        theSpeech.addPhrase(text);
     }
     if (event.keyCode == 13 && phrases.indexOf(text) == -1) {
         selectedMatch = $('.match.selected');
         selectedMatchText = selectedMatch.text();
         match = $('.match');
-        addPhrase(selectedMatchText);
+        theSpeech.addPhrase(selectedMatchText);
     }
 
     // backspace key
     if( event.keyCode == 8 ) {
-        removeLastPhrase();
+        theSpeech.removeLastPhrase(text, lastKey);
     }
     // down/right arrow keys
     if (event.keyCode == 40 || event.keyCode == 39) {
@@ -78,25 +78,8 @@ $('.add-phrase').keyup(function(event) {
 });
 
 $('.matches').on('click', '.match', function (){
-    addPhrase($(this)[0].innerText);
+    theSpeech.addPhrase($(this)[0].innerText);
 });
-
-var addPhrase = function(phrase) {
-    $('.input').before('<li>'+phrase+'</li>');
-    remixedSOTU.push(phrase);
-    matches = [];
-    matchList = '';
-    $('.matches').html(matchList);
-    console.log('The speech: ' , remixedSOTU);
-    $('.add-phrase').val('');
-};
-
-var removeLastPhrase = function() {
-    if (text === '' && $('.input').prev('li')[0] && (lastKey == 8 || lastKey == 13)) {
-        $('.input').prev('li')[0].remove();
-        remixedSOTU = remixedSOTU.splice(-1,1);
-    }
-};
 
 var findMatches = function(text) {
     if (text !== '') {
@@ -183,6 +166,6 @@ var videoPlayer = new VideoPlayer($('#videoContainer'));
 videoPlayer.setClipsDirectory('./clips/');
 
 $('#vamanos').on('click', function () {
-    videoPlayer.load(remixedSOTU);
+    videoPlayer.load(theSpeech.text);
     videoPlayer.playWhenReady();
 });
