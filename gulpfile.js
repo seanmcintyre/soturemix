@@ -7,7 +7,8 @@ var 	gulp = require('gulp'),
 			rename = require('gulp-rename'),
 			browserSync = require('browser-sync'),
 			autoprefixer = require('gulp-autoprefixer'),
-			minifyCSS = require('gulp-minify-css');
+			minifyCSS = require('gulp-minify-css'),
+			browserify = require('gulp-browserify');
 
 // Static server
 gulp.task('browser-sync', function() {
@@ -15,12 +16,20 @@ gulp.task('browser-sync', function() {
 		server: {
 			baseDir: "app"
 		},
+		open: false,
 		port: 8080
 	});
 });
 
 gulp.task('js', function() {
-	return gulp.src('_build/js/**')
+	gulp.src('_build/js/video/video_test.js')
+		.pipe(browserify({
+			debug: true
+		}))
+		.pipe(gulp.dest('app/js/video/'));
+
+
+	return gulp.src('_build/js/*.js')
 		.pipe(jshint())
 		.pipe(jshint.reporter(stylish))
 		// .pipe(concat('site.js'))

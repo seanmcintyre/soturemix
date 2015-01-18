@@ -1,4 +1,3 @@
-(function () {
 
 function HTMLVideoPlayer ($container) {
 	this.$container = $container;
@@ -109,6 +108,4 @@ HTMLVideoPlayer.prototype.getNextVideoElement = function () {
 	return this.$videoElements[this.getNextVideoElementIndex()];
 };
 
-window.HTMLVideoPlayer = HTMLVideoPlayer;
-
-}());
+module.exports = HTMLVideoPlayer;

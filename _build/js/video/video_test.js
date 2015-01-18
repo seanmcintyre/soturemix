@@ -1,3 +1,5 @@
+var HTMLVideoPlayer = require('./HTMLVideoPlayer/HTMLVideoPlayer');
+
 $(function () {
 	var isMobile = false,
 	videoPlayer;
