@@ -1,9 +1,14 @@
 var $ = require('jquery-browserify');
+var DataManager = require('./lib/DataManager');
 
-var phrases = ['this is', 'a funny', 'bone tired', 'day in america', 'a united people', 'iran', 'pizza', 'with', 'for', 'and', 'my', 'republican friends', 'tomorrow'];
+var phrases = []; // will be filled in by network call
 var matches = [];
 var lastKey;
 var remixedSOTU = [];
+
+DataManager.getAvailablePhrases(function (err, availablePhrases) {
+    phrases = availablePhrases;
+});
 
 $('.add-phrase').keyup(function(event) {
     var text = $(this).val();
@@ -12,7 +17,7 @@ $('.add-phrase').keyup(function(event) {
     // Loop through phrases to display matches
     var subStr = new RegExp(text);
 
-    if (text != '') {
+    if (text !== '') {
         var phrase;
         var matchList = '';
         for (var i = 0; i < phrases.length; i++) {
@@ -36,7 +41,7 @@ $('.add-phrase').keyup(function(event) {
             remixedSOTU.push(text);
             matches = [];
             matchList = '';
-            $(this).val('')
+            $(this).val('');
             console.log('The speech: ' , remixedSOTU);
         }
     }
