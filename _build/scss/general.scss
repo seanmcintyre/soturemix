@@ -126,7 +126,7 @@ header {
 
 .test-two {
 	resize: none;
-	overflow: hidden;
+	overflow: visible;
 	font-size: 3.5vw;
 	font-family: 'Georgia', serif;
 	border: 0;
@@ -143,7 +143,31 @@ header {
 	z-index: 100;
 	position: absolute;
 	left: 16.6666%;
-	top: 1000px;
+	top: 400px;
+
+	li {
+		cursor: pointer;
+		float: left;
+		display: inline-block;
+		background: #CCC;
+		margin: 5px;
+		padding: 3px 10px;
+	}
+
+	li.input {
+		padding: 0;
+		padding: 3px 10px;
+		input {
+			font-size: 3.5vw;
+			font-family: 'Georgia', serif;
+			border: 0;
+			outline: 0;
+			width: auto;
+			background: #EEE;
+			margin: 0;
+			padding: 0;
+		}
+	}
 }
 
 .matches {
@@ -154,16 +178,20 @@ header {
 	border: 0;
 	margin: 0 auto;
 	display: block;
-	margin-top: 30px;
-	width: 66.66%;
-	min-height: 300px;
 	line-height: 4.6vw;
 	color: #000;
-	background-color: #FFF;
+	background-color: lighten(blue,15%);
 	transition: all 0.3s;
 	margin-bottom: 60px;
 	z-index: 100;
 	position: absolute;
-	left: 16.6666%;
-	top: 1400px;
+
+	li {
+		background-color: lighten(blue,15%);
+		width: 100%;
+		display: block;
+		&:hover {
+			background-color: lighten(blue,30%);
+		}
+	}
 }
