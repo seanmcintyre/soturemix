@@ -1,0 +1,54 @@
+header {
+	background-color: #FFF;
+
+	.wrapper {
+		max-width: 960px;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+
+	.upper {
+		height: 36px;
+		background: url('http://www.whitehouse.gov/sites/whitehouse.gov/themes/forall/fortyfour/images/fortyfour/bg/wh_header_decor_desktop_large_format.png?1418744632') no-repeat center -140px;
+	}
+
+	.intro-bar {
+		color: #FFF;
+		background-color: rgba(0,60,128,0.82);
+		height: 70px;
+	}
+
+	.trail {
+		height: 47px;
+	}
+}
+
+.upper {
+	span,
+	nav {
+	float: left;
+	display: inline-block;
+ }
+}
+
+.intro-bar {
+	.logo,
+	h1 {
+		float: left;
+		display: inline-block;
+	}
+}
+
+.trail {
+	ol {
+		list-style-type: none;
+	}
+	li {
+		float: left;
+		display: inline-block;
+	}
+}
+
+.video-panel {
+    background-color: #000;
+}
