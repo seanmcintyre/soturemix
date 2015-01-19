@@ -50,5 +50,12 @@ header {
 }
 
 .video-panel {
-    background-color: #000;
+    background-color: darken($blue, 10%);
+}
+
+#videoContainer {
+	width: 615px;
+	height: 345px;
+	position: relative;
+	margin: 0 auto;
 }

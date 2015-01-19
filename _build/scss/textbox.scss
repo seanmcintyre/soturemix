@@ -1,63 +1,94 @@
+
+html, body {
+	background-color: $blue;
+}
+
+.editor {
+	font-family: 'Open Sans', sans-serif;
+	background-color: $blue;
+
+	li {
+		border-radius: 5px;
+	}
+}
+
+button {
+	background-color: lighten($blue,15%);
+	outline: 0;
+	border: 0;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	color: #FFF;
+}
+
+.infoBar {
+	button {
+		float: right;
+		margin: 5px 0 0 5px;
+		padding: 5px 15px;
+		border-radius: 5px;
+		background-color: $red;
+	}
+}
+
 .the-speech {
 	resize: none;
 	overflow: visible;
-	font-size: 32px;
-	font-family: 'Georgia', serif;
+	font-size: 24px;
 	border: 0;
 	margin: 0 auto;
 	display: block;
 	margin-top: 30px;
 	width: 66.66%;
-	min-height: 300px;
+	//min-height: 300px;
 	line-height: 38px;
 	color: #000;
 	background-color: #FFF;
 	transition: all 0.3s;
-	margin-bottom: 60px;
+	//margin-bottom: 60px;
 	z-index: 100;
 	position: relative;
-	margin-bottom: 200px;
+	//margin-bottom: 200px;
 
 	li {
-		cursor: pointer;
+		//cursor: pointer;
 		float: left;
 		display: inline-block;
 		background: transparent;
+		background-color: blue;
 		margin: 5px;
 		padding: 4px 8px;
 		border: 1px dashed #a6a6a6;
 		border-radius: 5px;
 	}
 
-	li.input {
-		background-color: #EEE;
-		margin: 5px;
-		padding: 4px 8px;
-		border: 1px dashed red;
-		width: 100%;
+	// li.input {
+	// 	background-color: #EEE;
+	// 	margin: 5px;
+	// 	padding: 4px 8px;
+	// 	border: 1px dashed red;
+	// 	width: 100%;
 
-		input {
-			width: 60px;
-			transform: translateY(2px);
-			background-color: #EEE;
-			font-size: 32px;
-			font-family: 'Georgia', serif;
-			border: 0;
-			outline: 0;
-			width: 100%;
-			background: #EEE;
-			margin: 0;
-			border: 0;
-			padding: 0;
-		}
-	}
+	// 	// input {
+	// 	// 	width: 60px;
+	// 	// 	transform: translateY(2px);
+	// 	// 	background-color: #EEE;
+	// 	// 	font-size: 24px;
+	// 	// 	border: 0;
+	// 	// 	outline: 0;
+	// 	// 	width: 100%;
+	// 	// 	background: #EEE;
+	// 	// 	margin: 0;
+	// 	// 	border: 0;
+	// 	// 	padding: 0;
+	// 	// }
+	// }
 }
 
 .matches {
 	resize: none;
 	overflow: hidden;
-	font-size: 32px;
-	font-family: 'Georgia', serif;
+	font-size: 24px;
 	border: 0;
 	margin: 0 auto;
 	display: block;
@@ -71,6 +102,7 @@
 	left: 40px;
 	margin-top: 8px;
 
+
 	li {
 		background-color: rgb(5,40,100);
 		width: auto;
@@ -80,6 +112,58 @@
 		}
 		&.selected {
 			background-color: lighten(rgb(5,40,100),20%);
+		}
+	}
+}
+
+.the-speech {
+	.phrase {
+		background-color: lighten($blue,15%);
+		color: #FFF;
+		border: 0;
+		cursor: pointer;
+	}
+	.input,
+	.add-phrase {
+		background-color: lighten($blue,15%);
+		color: #FFF;
+		border: 0;
+		width: 100%;
+		font-size: 24px;
+		border: 0;
+		outline: 0;
+		font-family: 'Open Sans', sans-serif;
+		cursor: normal;
+	}
+}
+
+.matches-bg {
+	background-color: $blue;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	overflow: hidden;
+	height: auto;
+	position: relative;
+	.matches {
+		background-color: $blue;
+		position: relative;
+		width: 66.66%;
+		margin: 0 auto;
+		height: auto;
+		li {
+			cursor: pointer;
+			transition: all 0.2s;
+			border: 2px solid #FFF;
+			background-color: rgba(255,255,255,0);
+			float: left;
+			padding: 5px 15px;
+			width: auto;
+			position: relative;
+			margin: 5px 5px 0 0;
+			&.selected {
+				background-color: rgba(255,255,255,0.2);
+			}
 		}
 	}
 }

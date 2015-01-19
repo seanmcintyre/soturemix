@@ -3,7 +3,7 @@ var Matches = require('./matches');
 var theSpeech = {
     text: [],
     addPhrase: function(phrase) {
-        $('.input').before('<li>'+phrase+'</li>');
+        $('.input').before('<li class="phrase">'+phrase+'</li>');
         this.text.push(phrase);
         Matches.clearMatches();
         $('.add-phrase').val('');

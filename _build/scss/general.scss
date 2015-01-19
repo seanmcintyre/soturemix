@@ -27,13 +27,6 @@ textarea, input { outline: none; }
 	}
 }
 
-#videoContainer {
-	width: 820px;
-	height: 460px;
-	position: relative;
-	margin: 0 auto;
-}
-
 .infoBar {
 	margin: 0 auto;
 	display: block;
@@ -50,12 +43,6 @@ textarea, input { outline: none; }
 		display: block;
 		width: 50%;
 		float: left;
-	}
-	button {
-		float: right;
-		line-height: 3vw;
-		font-size: 2vw;
-		font-family: 'Georgia', serif;
 	}
 }
 
