@@ -1,0 +1,26 @@
+.video-panel {
+	background-color: #EEE;
+	width: 100%;
+	padding: $p 0 $p*4;
+
+	.actions {
+		float: right;
+		width: 300px;
+
+		button {
+			padding: 20px 30px;
+			width: 100%;
+			margin-bottom: 1px;
+		}
+	}
+}
+
+#videoContainer {
+	float: left;
+	width: 600px;
+
+	video {
+		width: 100% !important;
+		height: 300px !important;
+	}
+}
