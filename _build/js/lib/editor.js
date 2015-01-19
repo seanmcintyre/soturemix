@@ -1,8 +1,6 @@
-var $ = require('jquery-browserify');
 var theSpeech = require('./theSpeech');
 var matches = require('./matches');
-var DataManager = require('./lib/DataManager');
-var VideoPlayer  = require('./lib/HTMLVideoPlayer');
+var DataManager = require('./DataManager');
 
 var lastKey;
 var phrases = []; // will be filled in by network call
@@ -53,20 +51,3 @@ $('.matches').on('click', '.match', function (){
     theSpeech.addPhrase($(this)[0].innerText);
 });
 
-var videoPlayer = new VideoPlayer($('#videoContainer'));
-videoPlayer.setClipsDirectory('./clips/');
-
-$('#vamanos').on('click', function () {
-    videoPlayer.load(theSpeech.text);
-    videoPlayer.playWhenReady();
-});
-
-$('#save').on('click', function () {
-    var video = {
-        clips: matches.matchList
-    };
-
-    DataManager.saveVideo(video, function (err, result) {
-        alert('saved with id ' + result._id);
-    });
-});
