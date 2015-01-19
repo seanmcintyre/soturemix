@@ -1,11 +1,11 @@
+var Matches = require('./matches');
+
 var theSpeech = {
     text: [],
     addPhrase: function(phrase) {
         $('.input').before('<li>'+phrase+'</li>');
         this.text.push(phrase);
-        matches = [];
-        matchList = '';
-        $('.matches').html(matchList);
+        Matches.clearMatches();
         $('.add-phrase').val('');
         console.log(this.text);
     },

@@ -1,5 +1,5 @@
-var theSpeech = require('./theSpeech');
-var matches = require('./matches');
+var TheSpeech = require('./theSpeech');
+var Matches = require('./matches');
 var DataManager = require('./DataManager');
 
 var lastKey;
@@ -14,38 +14,36 @@ DataManager.getAvailablePhrases(function (err, availablePhrases) {
 function init () {
     $('.add-phrase').keyup(function(event) {
         text = $(this).val();
-        matches.matchList = [];
+        Matches.matchList = [];
 
         // Loop through phrases to display matches
         subStr = new RegExp(text);
-        matches.findMatches(subStr, phrases);
+        Matches.findMatches(subStr, phrases);
 
         // enter key
         if (event.keyCode == 13 && phrases.indexOf(text) > -1) {
-            theSpeech.addPhrase(text);
+            TheSpeech.addPhrase(text);
         }
         if (event.keyCode == 13 && phrases.indexOf(text) == -1) {
-            matches.selectedMatchText = matches.selectedMatch.text();
-            theSpeech.addPhrase(matches.selectedMatchText);
+            Matches.selectedMatchText = Matches.selectedMatch.text();
+            TheSpeech.addPhrase(Matches.selectedMatchText);
         }
         // backspace key
         if( event.keyCode == 8 ) {
-            theSpeech.removeLastPhrase(text, lastKey);
+            TheSpeech.removeLastPhrase(text, lastKey);
             if (text.length == 0) {
-                matches.matchList = [];
-                matches.html = '';
-                $('.matches').html('');
+                Matches.clearMatches();
             }
         }
         // down/right arrow keys
         if (event.keyCode == 40 || event.keyCode == 39) {
             event.preventDefault();
-            matches.selectMatch('next');
+            Matches.selectMatch('next');
         }
         // up/left arrow keys
         if (event.keyCode == 38 || event.keyCode == 37) {
             event.preventDefault();
-            matches.selectMatch('prev');
+            Matches.selectMatch('prev');
         }
         // Backspace manager
         if (text.length == 0) {
@@ -56,7 +54,7 @@ function init () {
     });
 
     $('.matches').on('click', '.match', function (){
-        theSpeech.addPhrase($(this)[0].innerText);
+        TheSpeech.addPhrase($(this)[0].innerText);
     });
 }
 

@@ -41,28 +41,38 @@ var matches = {
         }
     },
     findMatches: function(inputText, phrases) {
+        console.log('---');
         console.log('looking for matches');
         if (inputText !== '') {
             this.html = '';
+            var phrase;
             for (var i = 0; i < phrases.length; i++) {
-                phrase = phrases[i];
-                if (inputText.test(phrase) & this.matchList.indexOf(inputText) === -1) {
+                if (inputText.test(phrases[i]) && this.matchList.indexOf(inputText) === -1 && phrases[i].length > 0) {
+                    phrase = phrases[i];
                     this.matchList.push(phrase);
-
-                    if (phrase.length > 0) {
-                        if (this.checkSelected(phrase) === true) {
-                            this.html = this.html + '<li class="match selected">'+phrase+'</li>';
-                        } else {
-                            this.html = this.html + '<li class="match">'+phrase+'</li>';
-                        }
+                    if (this.checkSelected(phrase) === true) {
+                        this.html = this.html + '<li class="match selected">'+phrase+'</li>';
+                    } else {
+                        this.html = this.html + '<li class="match">'+phrase+'</li>';
                     }
-
                 }
+            }
+            // If there is only one match, select it.
+            if (this.matchList.length === 1) {
+                this.html = '<li class="match selected">'+phrase+'</li>';
+                this.selectedMatch = $('.match.selected');
             }
             $('.matches').html(this.html);
         } else {
-            $('.matches').html('');
+            this.clearMatches();
         }
+    },
+    clearMatches: function() {
+        this.matchList = [];
+        $('.matches').html('');
+        this.selectedMatch = $('.match.selected');
+        this.selectedMatchText = '';
+        console.log('matches cleared');
     }
 };
 
