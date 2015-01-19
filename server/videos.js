@@ -25,6 +25,10 @@ function loadClips () {
 
 loadClips();
 
+function shareURLForVideo (video) {
+	return config.rootURL + video._id;
+}
+
 module.exports = {
 	get: function (id, callback) {
 		db.collection('videos').findOne({_id: db.ObjectId(id)}, function (err, video) {
@@ -36,6 +40,7 @@ module.exports = {
 				return callback(new Error('Video created by wrong app'));
 			}
 
+			video.shareURL = shareURLForVideo(video);
 			callback(null, video);
 		});
 	},
@@ -70,7 +75,9 @@ module.exports = {
 				return callback(new Error('something went wrong'));
 			}
 
-			return callback(null, docs[0]);
+			var newVideo = docs[0];
+			newVideo.shareURL = shareURLForVideo(newVideo);
+			return callback(null, newVideo);
 		});
 	},
 

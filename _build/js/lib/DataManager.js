@@ -28,3 +28,13 @@ DataManager.saveVideo = function (video, callback) {
 		}
 	});
 };
+
+DataManager.getVideo = function (id, callback) {
+	var jqXHR = $.get(ROOT_URL + '/videos/' + id, function (data) {
+		return callback(null, data);
+	});
+
+	jqXHR.fail(function () {
+		return callback(true);
+	});
+};
