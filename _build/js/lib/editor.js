@@ -12,7 +12,7 @@ DataManager.getAvailablePhrases(function (err, availablePhrases) {
 });
 
 function init () {
-    $('.add-phrase').keyup(function(event) {
+    $('.phrase-search').keyup(function(event) {
         text = $(this).val();
         Matches.matchList = [];
 

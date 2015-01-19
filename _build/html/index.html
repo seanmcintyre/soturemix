@@ -9,40 +9,25 @@
 </head>
 <body>
 
-<header>
-<!--     <h1>#SOTUremix</h1>
-    <h2>Remix the POTUS!</h2> -->
-</header>
 <section class="video-panel">
-   <div id="videoContainer">
-   </div>
-</section>
-<!-- <textarea class="the-script" maxlength="200" name="" id="" placeholder="Remix the POTUS"></textarea>
-<div class="cursor"></div> -->
-<section class="editor">
-    <div class="infoBar editor">
-        <!-- <div class="charCount">Characters left: </div> -->
-        <button id='save'>Save</button>
-        <button id='vamanos'>Make It So</button>
+    <div class="wrapper">
+        <div id="videoContainer"></div>
+        <nav class="actions">
+            <button id="help">Help</button>
+            <button id="vamanos">Make It So</button>
+            <button id="save">Save & Share</button>
+        </nav>
     </div>
-    <ul class="the-speech editor">
-        <li class="input">
-            <input type="text" class="add-phrase">
-            <!-- <div class="matches"></div> -->
-        </li>
-    </ul>
-    <section class="matches-bg">
-        <div class="matches"></div>
-    </section>
 </section>
-
-<footer>
-    Max & Sean
-</footer>
-
-<!-- <nav class="sidebar">
-
-</nav> -->
+<section class="editor-panel">
+    <div class="editor">
+        <ul class="speech">
+        </ul>
+        <input type="text" class="phrase-search">
+        <ul class="matches">
+        </ul>
+    </div>
+</section>
 
 <script src="js/app.js"></script>
 </body>

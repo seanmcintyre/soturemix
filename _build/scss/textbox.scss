@@ -1,186 +1,98 @@
-html, body {
-	background-color: $blue;
+.editor-panel {
+	width: 100%;
+	background-color: #FFF;
+	overflow: visible;
 }
 
 .editor {
-	font-family: 'Open Sans', sans-serif;
-	background-color: $blue;
-
-	li {
-		border-radius: 5px;
-	}
-}
-
-button {
-	background-color: lighten($blue,15%);
-	outline: 0;
-	border: 0;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 24px;
-	color: #FFF;
-}
-
-.infoBar {
-	button {
-		float: right;
-		margin: 5px 0 0 5px;
-		padding: 5px 15px;
-		border-radius: 5px;
-		background-color: $red;
-	}
-}
-
-.the-speech {
-	resize: none;
-	overflow: visible;
-	font-size: 24px;
-	border: 0;
-	margin: 0 auto;
-	display: block;
-	margin-top: 30px;
-	width: 66.66%;
-	//min-height: 300px;
-	line-height: 38px;
-	color: #000;
+	border: 2px solid #7f7f7f;
+	border-radius: 4px;
 	background-color: #FFF;
-	transition: all 0.3s;
-	//margin-bottom: 60px;
-	z-index: 100;
-	position: relative;
-	//margin-bottom: 200px;
+	max-width: 1000px;
+	margin: 0 auto;
+	transform: translateY(-$p*2);
+}
 
-	li {
-		//cursor: pointer;
-		float: left;
+.speech {
+	padding: $p;
+}
+
+.phrase {
+	@include btn();
+	&:after {
+		content: " ";
+		height: 4px;
+		width: 10px;
+		background-color: lighten($blue,15%);
+		position: absolute;
 		display: inline-block;
-		background: transparent;
-		background-color: blue;
-		margin: 5px;
-		padding: 4px 8px;
-		border: 1px dashed #a6a6a6;
-		border-radius: 5px;
+		top: calc(50% - 2px);
+		right: -10px;
+	}
+	&:nth-last-child(1):after {
+		display: none;
 	}
 
-	// li.input {
-	// 	background-color: #EEE;
-	// 	margin: 5px;
-	// 	padding: 4px 8px;
-	// 	border: 1px dashed red;
-	// 	width: 100%;
 
-	// 	// input {
-	// 	// 	width: 60px;
-	// 	// 	transform: translateY(2px);
-	// 	// 	background-color: #EEE;
-	// 	// 	font-size: 24px;
-	// 	// 	border: 0;
-	// 	// 	outline: 0;
-	// 	// 	width: 100%;
-	// 	// 	background: #EEE;
-	// 	// 	margin: 0;
-	// 	// 	border: 0;
-	// 	// 	padding: 0;
-	// 	// }
-	// }
+	animation-name: fadeInLeft;
+	animation-duration: 0.3s;
+	animation-fill-mode: both;
+	@for $i from 1 through 50 {
+	    &:nth-of-type(#{$i}) {
+	        animation-delay: 0.1 + $i * 0.015s;
+	    }
+	}
+}
+
+.phrase-search {
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	padding: 10px 20px;
+	border: 0;
+	outline: 0;
+	background-color: #EEE;
 }
 
 .matches {
-	resize: none;
-	overflow: hidden;
-	font-size: 24px;
-	border: 0;
-	margin: 0 auto;
-	display: block;
-	line-height: 38px;
-	color: #FFF;
-	background-color: transparent;
-	transition: all 0.3s;
-	margin-bottom: 60px;
-	z-index: 100;
-	position: absolute;
-	left: 40px;
-	margin-top: 8px;
-
-
-	li {
-		background-color: rgb(5,40,100);
-		width: auto;
-		display: block;
-		&:hover {
-			background-color: lighten(rgb(5,40,100),30%);
-		}
-		&.selected {
-			background-color: lighten(rgb(5,40,100),20%);
-		}
-	}
-}
-
-.the-speech {
-	.phrase {
-		background-color: lighten($blue,15%);
-		color: #FFF;
-		border: 0;
-		cursor: pointer;
-		position: relative;
-		&:after {
-			content: " ";
-			height: 4px;
-			width: 10px;
-			background-color: lighten($blue,15%);
-			position: absolute;
-			display: inline-block;
-			top: calc(50% - 2px);
-			right: -10px;
-		}
-		&:nth-last-child(2):after {
-			display: none;
-		}
-	}
-	.input,
-	.add-phrase {
-		background-color: lighten($blue,15%);
-		color: #FFF;
-		border: 0;
-		width: 100%;
-		font-size: 24px;
-		border: 0;
-		outline: 0;
-		font-family: 'Open Sans', sans-serif;
-		cursor: normal;
-	}
-}
-
-.matches-bg {
-	background-color: $blue;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	overflow: hidden;
-	height: auto;
+	min-height: 300px;
 	position: relative;
-	border-bottom: 3px solid darken($blue, 10%);
-	.matches {
-		background-color: $blue;
-		position: relative;
-		width: 66.66%;
-		margin: 0 auto;
-		height: 300px;
-		overflow-y: scroll;
+	padding: $p;
+}
 
-		li {
-			cursor: pointer;
-			transition: all 0.2s;
-			border: 2px solid #FFF;
-			background-color: rgba(255,255,255,0);
-			float: left;
-			padding: 5px 15px;
-			width: auto;
-			position: relative;
-			margin: 5px 0 0 5px;
-			&.selected,
-			&:hover {
-				background-color: rgba(255,255,255,0.2);
-			}
-		}
+.match {
+	@include btn(clear);
+}
+
+.matches.animate .match {
+	animation-name: fadeInRight;
+	animation-duration: 0.3s;
+	animation-fill-mode: both;
+	@for $i from 1 through 50 {
+	    &:nth-of-type(#{$i}) {
+	        animation-delay: 0.1 + $i * 0.015s;
+	    }
 	}
+}
+
+@keyframes fadeInRight{
+  0% {
+  	opacity: 0;
+    transform: translate(10px,0px);
+  }
+  100% {
+  	opacity: 1;
+    transform: translate(0px,0px);
+  }
+}
+
+@keyframes fadeInLeft{
+  0% {
+  	opacity: 0;
+    transform: translate(-10px,0px);
+  }
+  100% {
+  	opacity: 1;
+    transform: translate(0px,0px);
+  }
 }

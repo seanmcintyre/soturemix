@@ -2,10 +2,9 @@
 
 $blue: #2054b3;
 $red: #ff2439;
+$p: 20px;
 
-@import 'general';
-
+@import 'reset';
 @import 'global';
+@import 'video';
 @import 'textbox';
-
-@import 'sidebar';
