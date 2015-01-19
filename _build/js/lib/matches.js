@@ -41,8 +41,6 @@ var matches = {
         }
     },
     findMatches: function(inputText, phrases) {
-        console.log('---');
-        console.log('looking for matches');
         if (inputText !== '') {
             this.html = '';
             var phrase;
@@ -72,7 +70,6 @@ var matches = {
         $('.matches').html('');
         this.selectedMatch = $('.match.selected');
         this.selectedMatchText = '';
-        console.log('matches cleared');
     }
 };
 
