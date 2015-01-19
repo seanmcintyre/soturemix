@@ -26,7 +26,7 @@ var matches = {
             } else {
                 this.selectedMatch = this.match.eq(0);
                 this.selectedMatchText = this.match.eq(0).text();
-                match.eq(0).addClass('selected');
+                this.match.eq(0).addClass('selected');
             }
 
         } else {

@@ -31,13 +31,20 @@ function init () {
         // backspace key
         if( event.keyCode == 8 ) {
             theSpeech.removeLastPhrase(text, lastKey);
+            if (text.length == 0) {
+                matches.matchList = [];
+                matches.html = '';
+                $('.matches').html('');
+            }
         }
         // down/right arrow keys
         if (event.keyCode == 40 || event.keyCode == 39) {
+            event.preventDefault();
             matches.selectMatch('next');
         }
         // up/left arrow keys
         if (event.keyCode == 38 || event.keyCode == 37) {
+            event.preventDefault();
             matches.selectMatch('prev');
         }
         // Backspace manager
