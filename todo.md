@@ -10,3 +10,5 @@
 - implement some kind of grammar/punctuation correction
 	- should be "Mr. Speaker", not "mrspeaker", etc...
 - determine word/phrase/time limit
+
+- autoselect exact match
