@@ -1,98 +1,99 @@
 .editor-panel {
-	width: 100%;
-	background-color: #FFF;
-	overflow: visible;
+    width: 100%;
+    background-color: #FFF;
+    overflow: visible;
 }
 
 .editor {
-	border: 2px solid #7f7f7f;
-	border-radius: 4px;
-	background-color: #FFF;
-	max-width: 1000px;
-	margin: 0 auto;
-	transform: translateY(-$p*2);
+    border: 2px solid #7f7f7f;
+    border-radius: 4px;
+    background-color: #FFF;
+    max-width: 1000px;
+    margin: 0 auto;
+    transform: translateY(-$p*2);
 }
 
 .speech {
-	padding: $p;
+    padding: $p;
 }
 
 .phrase {
-	@include btn();
-	&:after {
-		content: " ";
-		height: 4px;
-		width: 10px;
-		background-color: lighten($blue,15%);
-		position: absolute;
-		display: inline-block;
-		top: calc(50% - 2px);
-		right: -10px;
-	}
-	&:nth-last-child(1):after {
-		display: none;
-	}
+    @include btn();
+    &:after {
+        content: " ";
+        height: 4px;
+        width: 10px;
+        background-color: lighten($blue,15%);
+        position: absolute;
+        display: inline-block;
+        top: calc(50% - 2px);
+        right: -10px;
+    }
+    &:nth-last-child(1):after {
+        display: none;
+    }
 
-
-	animation-name: fadeInLeft;
-	animation-duration: 0.3s;
-	animation-fill-mode: both;
-	@for $i from 1 through 50 {
-	    &:nth-of-type(#{$i}) {
-	        animation-delay: 0.1 + $i * 0.015s;
-	    }
-	}
+    animation-name: fadeInLeft;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    @for $i from 1 through 50 {
+        &:nth-of-type(#{$i}) {
+            animation-delay: 0.1 + $i * 0.015s;
+        }
+    }
 }
 
 .phrase-search {
-	width: 100%;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 24px;
-	padding: 10px 20px;
-	border: 0;
-	outline: 0;
-	background-color: #EEE;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    padding: 10px 20px;
+    border: 0;
+    outline: 0;
+    background-color: #EEE;
+    border-top: 2px solid #7f7f7f;
+    border-bottom: 2px solid #7f7f7f;
 }
 
 .matches {
-	min-height: 300px;
-	position: relative;
-	padding: $p;
+    min-height: 300px;
+    position: relative;
+    padding: $p;
 }
 
 .match {
-	@include btn(clear);
+    @include btn(clear);
 }
 
 .matches.animate .match {
-	animation-name: fadeInRight;
-	animation-duration: 0.3s;
-	animation-fill-mode: both;
-	@for $i from 1 through 50 {
-	    &:nth-of-type(#{$i}) {
-	        animation-delay: 0.1 + $i * 0.015s;
-	    }
-	}
+    animation-name: fadeInRight;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    @for $i from 1 through 50 {
+        &:nth-of-type(#{$i}) {
+            animation-delay: 0.1 + $i * 0.015s;
+        }
+    }
 }
 
 @keyframes fadeInRight{
   0% {
-  	opacity: 0;
+    opacity: 0;
     transform: translate(10px,0px);
   }
   100% {
-  	opacity: 1;
+    opacity: 1;
     transform: translate(0px,0px);
   }
 }
 
 @keyframes fadeInLeft{
   0% {
-  	opacity: 0;
+    opacity: 0;
     transform: translate(-10px,0px);
   }
   100% {
-  	opacity: 1;
+    opacity: 1;
     transform: translate(0px,0px);
   }
 }
