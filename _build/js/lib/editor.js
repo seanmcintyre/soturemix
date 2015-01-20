@@ -11,6 +11,7 @@ DataManager.getAvailablePhrases(function (err, availablePhrases) {
     phrases = availablePhrases;
 });
 
+// try change event instead of keypress and compare values
 function init () {
     $('.phrase-search').keyup(function(event) {
         text = $(this).val();

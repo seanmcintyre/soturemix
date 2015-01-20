@@ -12,3 +12,11 @@
 - determine word/phrase/time limit
 
 - autoselect exact match
+- random button
+- most shared
+- word bank
+
+- share modal
+- splash modal
+
+- '...' = Obama long pause

@@ -21,4 +21,5 @@ var theSpeech = {
     }
 };
 
+window.theSpeech = theSpeech;
 module.exports = theSpeech;
