@@ -69,9 +69,9 @@ Clip.prototype.advanceFrame = function () {
 };
 
 Clip.prototype.drawFrame = function (context) {
-	context.clearRect(0, 0, this.frameWidth, this.frameHeight);
+	// context.clearRect(0, 0, this.frameWidth, this.frameHeight);
 	context.drawImage(this.frameImage, 0, this.currentFrame * this.frameHeight,
-		this.frameWidth, this.frameHeight, 0, 0, this.frameWidth, this.frameHeight);
+		this.frameWidth, this.frameHeight, 0, 0, context.canvas.width, context.canvas.height);
 
 };
 
