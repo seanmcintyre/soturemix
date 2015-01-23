@@ -1,11 +1,11 @@
 var $ = require('jquery-browserify');
 var theSpeech = require('./lib/theSpeech');
 var DataManager = require('./lib/DataManager');
-var VideoPlayer  = require('./lib/HTMLVideoPlayer');
+var VideoPlayer  = require('./lib/JPEGVideoPlayer');
 var editor = require('./lib/editor');
 
 var videoPlayer = new VideoPlayer($('#videoContainer'));
-videoPlayer.setClipsDirectory('./clips/');
+videoPlayer.setClipsDirectory('./filmstrips/');
 
 
 var id = getIdFromURL();
