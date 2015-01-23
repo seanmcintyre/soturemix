@@ -14,7 +14,7 @@ DataManager.getAvailablePhrases(function (err, availablePhrases) {
 // try change event instead of keypress and compare values
 function init () {
     $('.phrase-search').keyup(function(event) {
-        text = $(this).val();
+        text = $(this).val().toLowerCase();
         Matches.matchList = [];
 
         // Loop through phrases to display matches
