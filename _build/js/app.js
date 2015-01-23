@@ -26,6 +26,7 @@ if (id) {
 
 $('#vamanos').on('click', function () {
     videoPlayer.load(theSpeech.text);
+    videoPlayer.playDummySound();
     videoPlayer.playWhenReady();
 });
 
