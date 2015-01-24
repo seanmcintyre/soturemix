@@ -1,5 +1,15 @@
 header {
 	background-color:  lighten($red,10%);
+	h1 {
+		color: #fff;
+		font-size: 24px;
+		text-align: center;
+
+		@include MQ(M) {
+			font-size: 36px;
+			text-align: left;
+		}
+	}
 }
 
 .video-panel {
@@ -60,9 +70,11 @@ header {
 	width: 100%;
 	background-color: #000;
 	border-radius: 5px;
+	display: none;
 
 	@include MQ(M) {
 		width: 530px;
+		display: block;
 	}
 
 	video {

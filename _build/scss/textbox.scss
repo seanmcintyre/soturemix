@@ -62,6 +62,13 @@
     min-height: 300px;
     position: relative;
     padding: $p;
+    max-height: 400px;
+    overflow: scroll;
+
+    @include MQ(M) {
+        max-height: none;
+        overflow: hidden;
+    }
 }
 
 .match {
