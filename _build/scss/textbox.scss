@@ -5,12 +5,15 @@
 }
 
 .editor {
-    border: 2px solid #7f7f7f;
-    border-radius: 4px;
     background-color: #FFF;
-    max-width: 1000px;
     margin: 0 auto;
-    transform: translateY(-$p*2);
+
+    @include MQ(M) {
+        transform: translateY(-$p*2);
+        border: 2px solid #7f7f7f;
+        border-radius: 4px;
+        max-width: 1000px;
+    }
 }
 
 .speech {

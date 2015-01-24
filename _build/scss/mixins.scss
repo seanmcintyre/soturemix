@@ -1,0 +1,51 @@
+@mixin MQ($canvas) {
+
+    // Mobile-First
+    @if $canvas == XS {
+        @media only screen and (max-width: 667px) {
+            @content;
+        }
+    }
+
+    // Landscape Mobile
+    // Portrait Phablet
+    @else if $canvas == S {
+        //@media only screen and (min-width: 376px) and (orientation : portrait) {
+        @media only screen and (min-width: 376px) {
+            @content;
+        }
+        @media only screen and (max-width: 768px) and (orientation : landscape) {
+            @content;
+        }
+    }
+
+    // Landscape Mobile & Phablet
+    // Portrait Tablet
+    @else if $canvas == M {
+        @media only screen and (min-width: 768px) and (orientation : landscape) {
+            @content;
+        }
+    }
+
+    // Large Tablet
+    // Desktop
+    @else if $canvas == L {
+        @media only screen and (min-width: 1025px) {
+            @content;
+        }
+    }
+
+    // $siteWidth Media Query
+    @else if $canvas == wrap {
+        @media only screen and (min-width: $siteWidth) {
+            @content;
+        }
+    }
+
+    // Extra Large Screens
+    @else if $canvas == XL {
+        @media only screen and (min-width: 1536px) {
+            @content;
+        }
+    }
+}
