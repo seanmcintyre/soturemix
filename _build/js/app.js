@@ -6,6 +6,8 @@ var editor = require('./lib/editor');
 
 var videoPlayer = new VideoPlayer($('#videoContainer'), './video');
 
+console.log('ENV:', process.env.static_root);
+
 var id = getIdFromURL();
 if (id) {
     DataManager.getVideo(id, function (err, video) {

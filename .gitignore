@@ -1,3 +1,5 @@
 /node_modules
 /app
+/targets
 /server/config.js
+config/credentials.json

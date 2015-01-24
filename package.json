@@ -19,7 +19,11 @@
     "gulp-jshint": "~1.9.0",
     "gulp-browserify": "~0.5.1",
     "jquery-browserify": "~1.8.1",
-    "fluent-ffmpeg": "~2.0.0-rc3"
+    "fluent-ffmpeg": "~2.0.0-rc3",
+    "envify": "~3.2.0",
+    "gulp-env": "~0.2.0",
+    "gulp-s3": "~0.3.0",
+    "uglifyify": "~3.0.1"
   },
   "dependencies": {
     "mongodb": "~1.4.28",
