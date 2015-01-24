@@ -1,10 +1,11 @@
+var path = require('path');
 
-function HTMLVideoPlayer ($container) {
+function HTMLVideoPlayer ($container, clipRoot) {
 	this.$container = $container;
 	this.currentVideo = [];
 	this.currentClipIndex = 0;
 	this.currentVideoElementIndex = 0;
-	this.clipsDirectory = './';
+	this.clipsDirectory = clipRoot;
 	this.fileExtention = 'mp4';
 
 	this.createVideoElements();
@@ -78,7 +79,7 @@ HTMLVideoPlayer.prototype.setupNextVideo = function () {
 
 HTMLVideoPlayer.prototype.getURIForClip = function (clip) {
 	// TODO: normalize URL
-	return this.clipsDirectory + clip + '.' + this.fileExtention;
+	return path.join(this.clipsDirectory, clip + '.' + this.fileExtention);
 };
 
 HTMLVideoPlayer.prototype.nextVideo = function () {

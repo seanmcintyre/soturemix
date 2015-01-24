@@ -4,8 +4,6 @@ var Clip = function (imageFileName, audioFileName) {
 	this.imageFileName = imageFileName;
 	this.audioFileName = audioFileName;
 
-	this.frameHeight = 258;
-	this.frameWidth = 460;
 	this.currentFrame = 0;
 
 	this.readyCallbacks = [];
@@ -69,9 +67,18 @@ Clip.prototype.advanceFrame = function () {
 };
 
 Clip.prototype.drawFrame = function (context) {
-	// context.clearRect(0, 0, this.frameWidth, this.frameHeight);
+	var drawWidth, drawHeight;
+
+	if (context.canvas.width / context.canvas.height > 1) {
+		drawWidth = context.canvas.width;
+		drawHeight = context.canvas.width * (this.frameHeight / this.frameWidth);
+	} else {
+		drawHeight = context.canvas.height;
+		drawWidth = context.canvas.height * (this.frameWidth / this.frameHeight);
+	}
+
 	context.drawImage(this.frameImage, 0, this.currentFrame * this.frameHeight,
-		this.frameWidth, this.frameHeight, 0, 0, context.canvas.width, context.canvas.height);
+		this.frameWidth, this.frameHeight, 0, 0, drawWidth, drawHeight);
 
 };
 

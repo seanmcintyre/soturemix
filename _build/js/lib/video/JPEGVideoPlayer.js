@@ -1,15 +1,20 @@
 var Clip = require('./JPEGVideoPlayerClip');
+var path = require('path');
 
-function JPEGVideoPlayer ($container) {
+function JPEGVideoPlayer ($container, clipRoot) {
 	this.clips = [];
 
-
+	this.clipsDirectory = clipRoot;
 	this.videoContext = this.createVideoContext($container);
 	this.audioContext = new webkitAudioContext();
 	this.currentClip = null;
 	this.setFps(15);
 	this.clipsReadyCallbacks = [];
 	this.previousTimestamp = 0;
+
+	// TODO: move to config
+	this.frameHeight = 258;
+	this.frameWidth = 460;
 
 	this.initialClipTimestamp = 0;
 };
@@ -39,6 +44,12 @@ JPEGVideoPlayer.prototype.play = function () {
 };
 
 JPEGVideoPlayer.prototype.playWhenReady = function () {
+
+	// Mobile Safari needs to play a sound on a user event or sound will be muted
+	// Because this method will probably be called in response to a user interaction
+	// and might defer the actualy Play method, play a sound here
+    this.playDummySound();
+
 	if (!this.allClipsAreReady()) {
 		this.onAllClipsReady(this.play.bind(this));
 		return;
@@ -66,10 +77,14 @@ JPEGVideoPlayer.prototype.setFileExtention = function (extention) {
 JPEGVideoPlayer.prototype.createClipsFromVideo = function (video) {
 	var clips = [];
 	for (var i = 0; i < video.length; i++) {
-		var imageFileName = this.clipsDirectory + video[i] + '/' + video[i] + '.jpg';
-		var audioFileName = this.clipsDirectory + video[i] + '/' + video[i] + '.mp3';
+		var imageFileName = path.join(this.clipsDirectory, video[i], video[i] + '.jpg');
+		var audioFileName = path.join(this.clipsDirectory, video[i], video[i] + '.mp3');
 
-		clips.push(new Clip(imageFileName, audioFileName));
+		var clip = new Clip(imageFileName, audioFileName);
+		clip.frameWidth = this.frameWidth;
+		clip.frameHeight = this.frameHeight;
+
+		clips.push(clip);
 	}
 	return clips;
 }
@@ -97,8 +112,6 @@ JPEGVideoPlayer.prototype.drawFrame = function () {
 		return;
 	}
 
-	// console.log('in drawframe!');
-
 	if (this.currentTimestamp - this.previousTimestamp > this.mpf) {
 		if (!this.currentClip.hasStartedPlaying) {
 			this.startPlayingClip(this.currentClip);
@@ -110,9 +123,6 @@ JPEGVideoPlayer.prototype.drawFrame = function () {
 		}
 
 		this.previousTimestamp = this.currentTimestamp;
-	} else {
-		// console.log(this.currentTimestamp - this.previousTimestamp, this.mpf);
-		// console.log('skipping frame');
 	}
 
 	this.requestFrameIfNeeded();

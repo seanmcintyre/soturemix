@@ -1,12 +1,10 @@
 var $ = require('jquery-browserify');
 var theSpeech = require('./lib/theSpeech');
 var DataManager = require('./lib/DataManager');
-var VideoPlayer  = require('./lib/JPEGVideoPlayer');
+var VideoPlayer  = require('./lib/video/VideoPlayer');
 var editor = require('./lib/editor');
 
-var videoPlayer = new VideoPlayer($('#videoContainer'));
-videoPlayer.setClipsDirectory('./filmstrips/');
-
+var videoPlayer = new VideoPlayer($('#videoContainer'), './video');
 
 var id = getIdFromURL();
 if (id) {
@@ -26,7 +24,6 @@ if (id) {
 
 $('#vamanos').on('click', function () {
     videoPlayer.load(theSpeech.text);
-    videoPlayer.playDummySound();
     videoPlayer.playWhenReady();
 });
 
