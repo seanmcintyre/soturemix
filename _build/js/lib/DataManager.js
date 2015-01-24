@@ -5,7 +5,7 @@ Callbacks conform to the nodejs async standard (err, result)
 
 ***/
 
-var ROOT_URL = 'http://localhost:8000';
+var ROOT_URL = location.href.split(':').splice(0, 2).join(':') + ':8000';
 
 var $ = require('jquery-browserify');
 
