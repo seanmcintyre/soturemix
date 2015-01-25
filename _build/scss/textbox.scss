@@ -8,6 +8,10 @@
     background-color: #FFF;
     margin: 0 auto;
 
+    @include MQ(XS) {
+        position: relative;
+    }
+
     @include MQ(M) {
         transform: translateY(-$p*2);
         border: 2px solid #7f7f7f;
@@ -17,7 +21,12 @@
 }
 
 .speech {
-    padding: $p;
+    padding: 0;
+
+    @include MQ(XS) {
+        position: absolute;
+        top: 50px;
+    }
 }
 
 .phrase {
@@ -47,6 +56,10 @@
 }
 
 .phrase-search {
+    @include MQ(XS) {
+        padding: 5px;
+    }
+
     width: 100%;
     font-family: 'Open Sans', sans-serif;
     font-size: 24px;
@@ -61,9 +74,14 @@
 .matches {
     min-height: 300px;
     position: relative;
-    padding: $p;
+    padding: 0;
     max-height: 400px;
     overflow: scroll;
+    background: white;
+
+    &.empty {
+        background: rgba(0,0,0,0);
+    }
 
     @include MQ(M) {
         max-height: none;

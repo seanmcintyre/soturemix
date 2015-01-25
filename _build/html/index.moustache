@@ -5,6 +5,7 @@
     <title>#SOTUREMIX</title>
     <meta name="description" content="#SOTUREMIX">
     <meta name="author" content="Turtle Media">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{{static_root}}}css/style.css">
 </head>
 <body>

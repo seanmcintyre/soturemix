@@ -44,9 +44,11 @@ var matches = {
         if (inputText !== '') {
             this.html = '';
             var phrase;
+            var foundMatch = false;
             for (var i = 0; i < phrases.length; i++) {
                 if (inputText.test(phrases[i]) && this.matchList.indexOf(inputText) === -1 && phrases[i].length > 0) {
                     phrase = phrases[i];
+                    foundMatch = true;
                     this.matchList.push(phrase);
                     if (this.checkSelected(phrase) === true) {
                         this.html = this.html + '<li class="match selected">'+phrase+'</li>';
@@ -61,6 +63,12 @@ var matches = {
                 this.selectedMatch = $('.match.selected');
             }
             $('.matches').html(this.html);
+
+            if (!foundMatch) {
+                $('.matches').addClass('empty');
+            } else {
+                $('.matches').removeClass('empty');
+            }
         } else {
             this.clearMatches();
         }
@@ -68,6 +76,7 @@ var matches = {
     clearMatches: function() {
         this.matchList = [];
         $('.matches').html('');
+        $('.matches').addClass('empty');
         this.selectedMatch = $('.match.selected');
         this.selectedMatchText = '';
     }

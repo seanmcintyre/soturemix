@@ -53,8 +53,8 @@ gulp.task('set-env-deploy', function () {
 gulp.task('js', function() {
 	return gulp.src('_build/js/*.js')
 		.pipe(browserify({
-			debug: !process.env.production,
-			transform: ['uglifyify', 'envify']
+			debug: true,
+			transform: ['envify']
 		}))
 		.pipe(gulp.dest(destPath('js')))
 		.pipe(browserSync.reload({stream: true}));

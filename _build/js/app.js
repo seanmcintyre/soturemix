@@ -1,10 +1,11 @@
 var $ = require('jquery-browserify');
+var scrollTo = require('./lib/scrollTo');
 var theSpeech = require('./lib/theSpeech');
 var DataManager = require('./lib/DataManager');
-var VideoPlayer  = require('./lib/video/VideoPlayer');
+var videoPlayer  = require('./lib/video/VideoPlayer');
 var editor = require('./lib/editor');
 
-var videoPlayer = new VideoPlayer($('#videoContainer'), process.env.video_root);
+videoPlayer.init($('#videoContainer'), process.env.video_root);
 
 var id = getIdFromURL();
 if (id) {
