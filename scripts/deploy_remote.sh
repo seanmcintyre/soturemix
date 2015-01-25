@@ -1,7 +1,3 @@
 #! /bin/sh
 
-ssh root@$1 bash -c "'
-cd /var/www/soturemix
-git pull origin master
-scripts/deploy.sh
-'"
+sssh root@$1 cd soturemix & scripts/deploy.sh

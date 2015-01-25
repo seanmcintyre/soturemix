@@ -36,7 +36,7 @@ gulp.task('set-env-dev', function () {
 			production: false,
 			target: 'targets/dev'
 		},
-		file: 'config/config.dev.json'
+		file: 'config/config.dev.js'
 	});
 });
 
@@ -46,7 +46,7 @@ gulp.task('set-env-deploy', function () {
 			production: true,
 			target: 'targets/deploy'
 		},
-		file: 'config/config.deploy.json'
+		file: 'config/config.deploy.js'
 	});
 });
 
