@@ -26,7 +26,7 @@ gulp.task('browser-sync', function() {
 			baseDir: "targets/dev"
 		},
 		open: false,
-		port: 8080
+		port: 8081
 	});
 });
 
