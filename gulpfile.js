@@ -99,6 +99,9 @@ gulp.task('serve', ['build-dev', 'browser-sync'], function() {
 
 gulp.task('deploy', ['build-deploy'], function () {
 	var aws = require('./config/credentials').aws;
+
+	child_process.execFile('./scripts/deploy_remote.sh', process.env.remote_server);
+
 	return gulp.src(destPath('/**/*'))
 			.pipe(s3(aws, {
 				uploadPath: '/static/'
