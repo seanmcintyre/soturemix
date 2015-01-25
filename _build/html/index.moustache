@@ -81,7 +81,9 @@
 
 <section class="video-panel">
     <div class="wrapper">
-        <div id="videoContainer"></div>
+        <div id="videoContainer"> 
+            <div id='replayButton'>&#9654;</div>
+        </div>
         <nav class="actions">
             <button id="help">Help</button>
             <button id="vamanos">Play</button>

@@ -90,7 +90,7 @@ HTMLVideoPlayer.prototype.getURIForClip = function (clip) {
 
 HTMLVideoPlayer.prototype.nextVideo = function () {
 	if (!this.playing) {
-		return;
+		return this.didFinishPlaying();
 	}
 
 	var $videoElement1 = this.$videoElements[this.currentVideoElementIndex];
@@ -100,6 +100,12 @@ HTMLVideoPlayer.prototype.nextVideo = function () {
 	$videoElement2.show();
 	this.setupNextVideo();
 };
+
+HTMLVideoPlayer.prototype.didFinishPlaying = function () {
+	if (this.donePlayingCallback) {
+		this.donePlayingCallback();
+	}
+}
 
 HTMLVideoPlayer.prototype.switchPlayers = function () {
 	this.currentVideoElementIndex = this.getNextVideoElementIndex();
