@@ -5,7 +5,7 @@ module.exports = {
 	"appName": "sotuRemixDev",
 	"clipsDirectory": "../app/video/desktop",
 	"rootURL": "http://sotu.maxmamis.com/videos/",
-	"api_root": "/",
+	"api_root": "",
 	"templateFile": "_build/html/index.moustache",
 	"remote_server": "104.131.184.172"
 }

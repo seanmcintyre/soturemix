@@ -100,10 +100,10 @@ gulp.task('serve', ['build-dev', 'browser-sync'], function() {
 gulp.task('deploy', ['build-deploy'], function () {
 	var aws = require('./config/credentials').aws;
 
-	child_process.execFile('./scripts/deploy_remote.sh', [process.env.remote_server], function (err, stdout, stderr) {
-		stdout && console.log(stdout);
-		stderr && console.error(stderr);
-	});
+	// child_process.execFile('./scripts/deploy_remote.sh', [process.env.remote_server], function (err, stdout, stderr) {
+	// 	stdout && console.log(stdout);
+	// 	stderr && console.error(stderr);
+	// });
 
 	return gulp.src(destPath('/**/*'))
 			.pipe(s3(aws, {
