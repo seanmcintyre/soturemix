@@ -4,9 +4,7 @@ var DataManager = require('./lib/DataManager');
 var VideoPlayer  = require('./lib/video/VideoPlayer');
 var editor = require('./lib/editor');
 
-var videoPlayer = new VideoPlayer($('#videoContainer'), './video');
-
-console.log('ENV:', process.env.static_root);
+var videoPlayer = new VideoPlayer($('#videoContainer'), process.env.video_root);
 
 var id = getIdFromURL();
 if (id) {

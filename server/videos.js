@@ -1,29 +1,8 @@
 var db = require('./db');
-var config = require('./config');
+var config = require('../config');
 var _ = require('underscore');
 var fs = require('fs');
-
-var clips = [];
-
-function loadClips () {
-	fs.readdir(config.clipsDirectory, function (err, files) {
-		if (err) {
-			throw err;
-		}
-
-		for (var i = 0; i < files.length; i++) {
-			var file = files[i];
-			if (file[0] === '.') {
-				continue;
-			}
-
-			var pathComponents = file.split('.');
-			clips.push(pathComponents[0]);
-		}
-	});
-}
-
-loadClips();
+var clips = require('../config/clips');
 
 function shareURLForVideo (video) {
 	return config.rootURL + video._id;

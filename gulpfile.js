@@ -11,6 +11,7 @@ var 	gulp = require('gulp'),
 			browserify = require('gulp-browserify'),
 			env = require('gulp-env'),
 			s3 = require('gulp-s3'),
+			mustache = require("gulp-mustache-plus"),
 			child_process = require('child_process'),
 			path = require('path');
 
@@ -73,6 +74,9 @@ gulp.task('scss', function() {
 
 gulp.task('html', function() {
 	gulp.src('_build/html/**')
+		.pipe(mustache(process.env, {
+			extension: '.html'
+		}))
 		.pipe(gulp.dest(destPath('')))
 		.pipe(browserSync.reload({stream:true}));
 });
@@ -86,7 +90,7 @@ gulp.task('watch', function() {
 gulp.task('default', []);
 
 gulp.task('serve', ['build-dev', 'browser-sync'], function() {
-	child_process.fork('app.js', {cwd: './server'});
+	child_process.fork('server/app.js', {cwd: './'});
 
 	gulp.watch('_build/js/**', ['js']);
 	gulp.watch('_build/scss/**', ['scss']);
@@ -96,7 +100,9 @@ gulp.task('serve', ['build-dev', 'browser-sync'], function() {
 gulp.task('deploy', ['build-deploy'], function () {
 	var aws = require('./config/credentials').aws;
 	return gulp.src(destPath('/**/*'))
-			.pipe(s3(aws));
+			.pipe(s3(aws, {
+				uploadPath: '/static/'
+			}));
 });
 
 gulp.task('build-dev', ['set-env-dev', 'scss', 'js', 'html']);

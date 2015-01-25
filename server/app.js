@@ -1,6 +1,7 @@
 var express = require('express');
 var videos = require('./videos');
-var config = require('./config');
+var config = require('../config');
+var template = require('./template');
 
 var app = express();
 app.use(require('body-parser').json());
@@ -17,6 +18,10 @@ app.get('/clips', function (req, res) {
 	videos.getClips(function (err, clips) {
 		res.send(clips);
 	});
+});
+
+app.get('/', function (req, res) {
+	res.send(template.render());
 });
 
 app.get('/videos/:id', function (req, res) {

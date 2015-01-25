@@ -1,5 +1,5 @@
 var Clip = require('./JPEGVideoPlayerClip');
-var path = require('path');
+var url = require('url');
 
 function JPEGVideoPlayer ($container, clipRoot) {
 	this.clips = [];
@@ -77,8 +77,8 @@ JPEGVideoPlayer.prototype.setFileExtention = function (extention) {
 JPEGVideoPlayer.prototype.createClipsFromVideo = function (video) {
 	var clips = [];
 	for (var i = 0; i < video.length; i++) {
-		var imageFileName = path.join(this.clipsDirectory, video[i], video[i] + '.jpg');
-		var audioFileName = path.join(this.clipsDirectory, video[i], video[i] + '.mp3');
+		var imageFileName = url.resolve(this.clipsDirectory, video[i], video[i] + '.jpg');
+		var audioFileName = url.resolve(this.clipsDirectory, video[i], video[i] + '.mp3');
 
 		var clip = new Clip(imageFileName, audioFileName);
 		clip.frameWidth = this.frameWidth;
