@@ -30,7 +30,14 @@ gulp.task('browser-sync', function() {
 	});
 });
 
-gulp.task('set-env-dev', function () {
+gulp.task('set-env-global', function () {
+	return env({
+		file: 'config/config.global.js'
+	});
+
+});
+
+gulp.task('set-env-dev', ['set-env-global'], function () {
 	return env({
 		vars: {
 			production: false,
@@ -40,7 +47,7 @@ gulp.task('set-env-dev', function () {
 	});
 });
 
-gulp.task('set-env-deploy', function () {
+gulp.task('set-env-deploy', ['set-env-global'], function () {
 	return env({
 		vars: {
 			production: true,
