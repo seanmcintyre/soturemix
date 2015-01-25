@@ -6,7 +6,7 @@ module.exports = {
 	"port": 8000,
 	"appName": "sotuRemixDev",
 	"clipsDirectory": "../app/video/desktop",
-	"rootURL": "http://" + os.hostname() + ":8081/?_id=",
+	"rootURL": "http://" + os.hostname() + ":8000/videos/",
 	"api_root": "",
 	"templateFile": "_build/html/index.moustache"
 }

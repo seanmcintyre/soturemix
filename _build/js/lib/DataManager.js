@@ -24,7 +24,6 @@ DataManager.getAvailablePhrases = function (callback) {
 };
 
 DataManager.saveVideo = function (video, callback) {
-	console.log(video);
 	$.ajax(ROOT_URL + '/videos', {
 		data: JSON.stringify(video),
 		type: 'POST',
@@ -36,9 +35,15 @@ DataManager.saveVideo = function (video, callback) {
 };
 
 DataManager.getVideo = function (id, callback) {
-	var jqXHR = $.get(ROOT_URL + '/videos/' + id, function (data) {
-		return callback(null, data);
+	var jqXHR = $.ajax(ROOT_URL + '/videos/' + id, {
+		type: 'GET',
+		contentType: 'application/json',
+		success: function (data) {
+			console.log(data);
+			return callback(null, data);
+		}
 	});
+
 
 	jqXHR.fail(function () {
 		return callback(true);

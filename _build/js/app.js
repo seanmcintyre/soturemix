@@ -7,17 +7,9 @@ var editor = require('./lib/editor');
 
 videoPlayer.init($('#videoContainer'), process.env.video_root);
 
-var id = getIdFromURL();
-if (id) {
-    DataManager.getVideo(id, function (err, video) {
-        if (err) {
-            alert("Uh oh! Couldn't load your video");
-            return;
-        } else {
-            videoPlayer.load(video.clips);
-            videoPlayer.playWhenReady();
-        }
-    });
+if (CURRENT_VIDEO) {
+    videoPlayer.load(CURRENT_VIDEO.clips);
+    videoPlayer.playWhenReady();
     $('.editor').hide();
 } else {
     editor.init();

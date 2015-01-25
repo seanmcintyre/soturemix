@@ -3,10 +3,32 @@
 <head>
     <meta charset="utf-8">
     <title>#SOTUREMIX</title>
+ 
+    <link rel="stylesheet" href="{{{static_root}}}css/style.css">
+
     <meta name="description" content="#SOTUREMIX">
     <meta name="author" content="Turtle Media">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{{static_root}}}css/style.css">
+
+    <!-- generic sharing meta -->
+
+{{#current_video}}
+    <!-- individual video sharing meta -->
+
+    <script>
+    window.SHOWING_VIDEO = true;
+    window.CURRENT_VIDEO = {{{current_video_json}}};
+    </script>
+{{/current_video}}
+{{^current_video}}
+    <!-- no-video-only sharing meta -->
+
+    <script>
+    window.SHOWING_VIDEO = false;
+    window.CURRENT_VIDEO = null;
+    </script>
+{{/current_video}}
+
 </head>
 <body>
 
