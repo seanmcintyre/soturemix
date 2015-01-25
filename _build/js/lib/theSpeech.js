@@ -7,7 +7,6 @@ var theSpeech = {
         this.text.push(phrase);
         Matches.clearMatches();
         $('.phrase-search').val('');
-        console.log(this.text);
     },
     removeLastPhrase: function(inputText, lastKey) {
         // if (inputText === '' && $('.input').prev('li')[0] && (lastKey == 8 || lastKey == 13)) {

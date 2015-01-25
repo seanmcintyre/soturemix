@@ -7,7 +7,7 @@ function HTMLVideoPlayer ($container, clipRoot) {
 	this.currentVideoElementIndex = 0;
 	this.clipsDirectory = clipRoot;
 	this.fileExtention = 'mp4';
-
+	this.playing = false;
 	this.createVideoElements();
 }
 
@@ -22,12 +22,18 @@ HTMLVideoPlayer.prototype.load = function (video) {
 };
 
 HTMLVideoPlayer.prototype.play = function () {
+	if (this.playing) {
+		return;
+	}
+
+	this.currentClipIndex = -1;
+	this.playing = true;
 	this.setupNextVideo();
 	this.nextVideo();
 };
 
 HTMLVideoPlayer.prototype.stop = function () {
-	// TODO: implement this
+	this.playing = false;
 };
 
 HTMLVideoPlayer.prototype.playWhenReady = function () {
@@ -65,11 +71,12 @@ HTMLVideoPlayer.prototype.createVideoElements = function () {
 HTMLVideoPlayer.prototype.setupNextVideo = function () {
 	this.currentClipIndex++;
 
-	if (this.currentClipIndex.length >= this.currentVideo.length) {
+	if (this.currentClipIndex >= this.currentVideo.length) {
 		if (this.looping) {
 			this.currentClipIndex = 0;
 		} else {
 			this.stop();
+			return;
 		}
 	}
 
@@ -82,6 +89,10 @@ HTMLVideoPlayer.prototype.getURIForClip = function (clip) {
 };
 
 HTMLVideoPlayer.prototype.nextVideo = function () {
+	if (!this.playing) {
+		return;
+	}
+
 	var $videoElement1 = this.$videoElements[this.currentVideoElementIndex];
 	var $videoElement2 = this.switchPlayers();
 	$videoElement2[0].play();

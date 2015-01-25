@@ -16,7 +16,9 @@ if (CURRENT_VIDEO) {
 }
 
 $('#vamanos').on('click', function () {
-    videoPlayer.load(theSpeech.text);
+    if (!CURRENT_VIDEO) {
+        videoPlayer.load(theSpeech.text);
+    }
     videoPlayer.playWhenReady();
 });
 
