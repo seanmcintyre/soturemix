@@ -8,5 +8,6 @@ module.exports = {
 	"clipsDirectory": "../app/video/desktop",
 	"rootURL": "http://" + os.hostname() + ":8000/videos/",
 	"api_root": "",
-	"templateFile": "_build/html/index.moustache"
+	"templateFile": "_build/html/index.moustache",
+	"defaultShareURL": "http://sotu.maxmamis.com/"
 }

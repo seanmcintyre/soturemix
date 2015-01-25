@@ -46,7 +46,8 @@ app.get('/videos/:id', function (req, res) {
 			// console.log(video);
 			res.send(template.render({
 				current_video: video,
-				current_video_json: JSON.stringify(video)
+				current_video_json: JSON.stringify(video),
+				current_video_text: video.phrases.join(' ')
 			}));
 		}
 	});

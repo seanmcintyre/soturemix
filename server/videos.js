@@ -20,6 +20,7 @@ module.exports = {
 			}
 
 			video.shareURL = shareURLForVideo(video);
+			video.phrases = video.clips;
 			callback(null, video);
 		});
 	},
@@ -42,6 +43,10 @@ module.exports = {
 
 		video = {
 			clips: clips,
+
+			// Eventually "clips" may be something different and
+			// a transform will be required here
+			phrases: clips,
 			appName: config.appName
 		};
 

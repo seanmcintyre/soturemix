@@ -2,30 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>#SOTUREMIX</title>
+    <title>{{hashtag}} — {{description}}</title>
  
     <link rel="stylesheet" href="{{{static_root}}}css/style.css">
 
-    <meta name="description" content="#SOTUREMIX">
+    <meta name="description" content="{{hashtag}}">
     <meta name="author" content="Turtle Media">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- generic sharing meta -->
+    <!-- Twitter Card data -->
+    <meta name="twitter:title" content="{{hashtag}}">
+    <meta name="twitter:image:src" content="{{{static_root}}}{{{coverImage}}}">
+    <meta name="twitter:site" content="@maxmamis">
+    <meta name="twitter:site" content="@seanmcintyre">
 
+    <!-- Open Graph data -->
+    <meta property="og:title" content="{{hashtag}}" />
+    <meta property="og:site_name" content="{{hashtag}}" />
+    <meta property="og:image" content="{{{static_root}}}{{{coverImage}}}" />
+    <meta property="fb:app_id" content="{{FBAppID}}" />
+
+    <!-- Schema.org markup for Google+ (LOL) -->
+    <meta itemprop="name" content="{{hashtag}}">
+    <meta itemprop="image" content="{{{static_root}}}{{{coverImage}}}">
+
+    <!-- markup specific to a shared video -->
 {{#current_video}}
-    <!-- individual video sharing meta -->
+
+    {{#socialVideoEnabled}}
+
+    <!-- Links to embedded video go here -->
+    {{/socialVideoEnabled}}
+    {{^socialVideoEnabled}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website" />
+
+    {{/socialVideoEnabled}}
+
+    <meta name="twitter:description" content="{{current_video_text}}">
+    <meta property="og:description" content="{{current_video_text}}" />
+    <meta property="og:url" content="{{{current_video.shareURL}}}" />
+
+    <meta itemprop="description" content="{{current_video_text}}">
 
     <script>
-    window.SHOWING_VIDEO = true;
-    window.CURRENT_VIDEO = {{{current_video_json}}};
+        window.SHOWING_VIDEO = true;
+        window.CURRENT_VIDEO = {{{current_video_json}}};
     </script>
 {{/current_video}}
+
+    <!-- no shared video, "create your own" page -->
 {{^current_video}}
-    <!-- no-video-only sharing meta -->
+
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="{{description}}">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:url" content="{{{defaultShareURL}}}" />
+
+    <meta itemprop="description" content="{{description}}">
 
     <script>
-    window.SHOWING_VIDEO = false;
-    window.CURRENT_VIDEO = null;
+        window.SHOWING_VIDEO = false;
+        window.CURRENT_VIDEO = null;
     </script>
 {{/current_video}}
 
