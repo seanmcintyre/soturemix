@@ -1,4 +1,4 @@
-var path = require('path');
+var url = require('url');
 
 function HTMLVideoPlayer ($container, clipRoot) {
 	this.$container = $container;
@@ -78,8 +78,7 @@ HTMLVideoPlayer.prototype.setupNextVideo = function () {
 };
 
 HTMLVideoPlayer.prototype.getURIForClip = function (clip) {
-	// TODO: normalize URL
-	return path.join(this.clipsDirectory, clip + '.' + this.fileExtention);
+	return url.resolve(this.clipsDirectory, clip + '.' + this.fileExtention);
 };
 
 HTMLVideoPlayer.prototype.nextVideo = function () {
