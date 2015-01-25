@@ -3,7 +3,6 @@ module.exports = {
 	"video_root": "http://soturemix.s3-website-us-east-1.amazonaws.com/video/",
 	"port": 80,
 	"appName": "sotuRemix",
-	"clipsDirectory": "../app/video/desktop",
 	"rootURL": "http://sotu.maxmamis.com/videos/",
 	"api_root": "",
 	"templateFile": "_build/html/index.moustache",

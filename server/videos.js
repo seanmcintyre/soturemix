@@ -2,7 +2,33 @@ var db = require('./db');
 var config = require('../config');
 var _ = require('underscore');
 var fs = require('fs');
-var clips = require('../config/clips');
+
+var clips;
+if (config.clipsDirectory) {
+	console.log('Loading clips from local directory');
+	clips = [];
+	function loadClips () {
+		fs.readdir('./targets/dev/video/desktop', function (err, files) {
+			if (err) {
+				throw err;
+			}
+
+			for (var i = 0; i < files.length; i++) {
+				var file = files[i];
+				if (file[0] === '.') {
+					continue;
+				}
+
+				var pathComponents = file.split('.');
+				clips.push(pathComponents[0]);
+			}
+		});
+	}
+	loadClips();
+} else {
+	console.log('Loading clips from JSON file');
+	clips = require('../config/clips');
+}
 
 function shareURLForVideo (video) {
 	return config.rootURL + video._id;
