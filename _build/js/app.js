@@ -7,9 +7,15 @@ var editor = require('./lib/editor');
 
 videoPlayer.init($('#videoContainer'), process.env.video_root);
 
+var isMobile = /iphone/i.test(navigator.userAgent.toLowerCase());
+
 if (CURRENT_VIDEO) {
     videoPlayer.load(CURRENT_VIDEO.clips);
-    videoPlayer.playWhenReady();
+    if (!isMobile) {
+        videoPlayer.playWhenReady();
+    } else {
+        videoPlayer.showReplayButton();
+    }
     $('.editor').hide();
 } else {
     editor.init();

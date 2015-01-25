@@ -53,5 +53,8 @@ module.exports = {
 	},
 	load: function (clips) {
 		_player.load(clips);
+	},
+	showReplayButton: function () {
+		_player.showReplayButton();
 	}
 }

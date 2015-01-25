@@ -39,6 +39,8 @@ JPEGVideoPlayer.prototype.play = function () {
 
 	if (!this.drawing) {
 		this.drawing = true;
+		this.currentClip = this.clips[0];
+		this.currentClipIndex = 0;
 		this.requestFrameIfNeeded();
 	}
 };
@@ -157,6 +159,9 @@ JPEGVideoPlayer.prototype.donePlaying = function () {
 	if (!this.looping) {
 		this.currentClip = null;
 		this.drawing = false;
+		if (this.donePlayingCallback) {
+			this.donePlayingCallback();
+		}
 	} else {
 		this.currentClipIndex = -1;
 		this.playNextClip();
