@@ -20,6 +20,10 @@ app.get('/clips', function (req, res) {
 	});
 });
 
+app.get('/test', function (req, res) {
+	res.send('IT WORKS!');
+});
+
 app.get('/', function (req, res) {
 	res.send(template.render());
 });
