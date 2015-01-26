@@ -19,8 +19,8 @@
 - '...' = Obama long pause
 
 
-- fix mobile detection
-- improvements for mobile interaction
+<!-- - fix mobile detection -->
+<!-- - improvements for mobile interaction -->
 <!-- - fix replay bug -->
 - share buttons, share popover
 - help page
