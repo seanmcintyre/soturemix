@@ -101,6 +101,7 @@
     </div>
 </section>
 
+<script src="{{{static_root}}}js/fastclick.js"></script>
 <script src="{{{static_root}}}js/app.js"></script>
 </body>
 </html>

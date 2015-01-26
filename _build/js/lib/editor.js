@@ -19,6 +19,19 @@ function init () {
     $('.phrase-search').keyup(keyup);
     $('.matches').on('click', '.match', selectedMatch);
     $('.phrase-search').focus(focusSearch);
+    $('body').bind("touchmove", didDrag);
+
+    if (isMobile) {
+        // There's no good way to specify the height between the input field and the mobile keyboard
+        // Approximate it with viewportHeight * .5, then add gratuitous padding so that
+        // nothing should be out of scrolling reach
+        var viewportHeight = $(window).height();
+        $('.matches').css({
+            maxHeight: viewportHeight * .5,
+            minHeight: viewportHeight * .5,
+            paddingBottom: 100
+        });
+    }
 }
 
 function keyup (event) {
@@ -76,6 +89,12 @@ function focusSearch () {
     }
 }
 
+function didDrag (event) {
+    var $target = $(event.target)
+    if ($('.phrase-search').is(':focus') && !$target.hasClass('matches') && !$target.hasClass('match')) {
+        event.preventDefault();
+    }
+}
 
 module.exports = {
     init: init

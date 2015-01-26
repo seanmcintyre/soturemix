@@ -21,7 +21,7 @@
 
 - fix mobile detection
 - improvements for mobile interaction
-- fix replay bug
+<!-- - fix replay bug -->
 - share buttons, share popover
 - help page
 - poster frame (so it's not just a black box)

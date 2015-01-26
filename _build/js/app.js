@@ -8,6 +8,9 @@ var editor = require('./lib/editor');
 videoPlayer.init($('#videoContainer'), process.env.video_root);
 
 var isMobile = /iphone/i.test(navigator.userAgent.toLowerCase());
+$(function() {
+    Origami.fastclick(document.body);
+});
 
 if (CURRENT_VIDEO) {
     videoPlayer.load(CURRENT_VIDEO.clips);
