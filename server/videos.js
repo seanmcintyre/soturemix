@@ -53,6 +53,7 @@ module.exports = {
 
 	save: function (video, callback) {
 		var clips = video.clips;
+		var phrases = video.phrases;
 
 		// Do some basic sanity checking here — for now,
 		// just make sure all clips are strings
@@ -69,10 +70,7 @@ module.exports = {
 
 		video = {
 			clips: clips,
-
-			// Eventually "clips" may be something different and
-			// a transform will be required here
-			phrases: clips,
+			phrases: phrases,
 			appName: config.appName
 		};
 
@@ -91,10 +89,13 @@ module.exports = {
 		});
 	},
 
-	// Async in case this involves a network call in the future
 	getClips: function (callback) {
-		process.nextTick(function () {
-			callback(null, clips);
+		db.collection('clips').find().toArray(function (err, clips) {
+			if (err) {
+				return callback(err);
+			}
+
+			return callback(null, clips);
 		});
 	}
 };

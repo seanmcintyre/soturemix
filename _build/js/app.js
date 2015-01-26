@@ -5,6 +5,7 @@ var DataManager = require('./lib/DataManager');
 var videoPlayer  = require('./lib/video/VideoPlayer');
 var editor = require('./lib/editor');
 var isMobile = require('./lib/isMobile');
+var videoFromPhrases = require('./lib/videoFromPhrases');
 
 videoPlayer.init($('#videoContainer'), process.env.video_root);
 
@@ -26,15 +27,13 @@ if (CURRENT_VIDEO) {
 
 $('#vamanos').on('click', function () {
     if (!CURRENT_VIDEO) {
-        videoPlayer.load(theSpeech.text);
+        videoPlayer.load(videoFromPhrases(theSpeech.text).clips);
     }
     videoPlayer.playWhenReady();
 });
 
 $('#save').on('click', function () {
-    var video = {
-        clips: theSpeech.text
-    };
+    var video = videoFromPhrases(theSpeech.text);
 
     DataManager.saveVideo(video, function (err, result) {
         alert('saved with URL ' + result.shareURL);

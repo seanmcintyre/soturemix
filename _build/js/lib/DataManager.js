@@ -17,11 +17,31 @@ if (process.env.production && process.env.production != 'false') {
 	ROOT_URL = location.href.split(':').splice(0, 2).join(':') + ':8000';
 }
 
-DataManager.getAvailablePhrases = function (callback) {
-	$.get(ROOT_URL + '/clips', function (response) {
-		callback(null, response);
-	});
-};
+DataManager.getClips = (function () {
+	var _clips, callbacks = [], requestMade = false;
+	
+	return function (callback) {
+
+		if (_clips) {
+			return callback(null, _clips);
+		}
+
+		callbacks.push(callback);
+
+		if (!requestMade) {
+			requestMade = true;
+			$.get(ROOT_URL + '/clips', function (response) {
+				_clips = response;
+
+				for (var i = 0; i < callbacks.length; i++) {
+					if (callbacks[i] && typeof callbacks[i] === 'function') {
+						callbacks[i](null, response);
+					}
+				}
+			});
+		}
+	}
+}());
 
 DataManager.saveVideo = function (video, callback) {
 	$.ajax(ROOT_URL + '/videos', {

@@ -2,6 +2,7 @@ var ffmpeg = require('fluent-ffmpeg');
 var fs = require('fs');
 var path = require('path');
 var child_process = require('child_process');
+var rimraf = require('rimraf');
 
 // var inputFile = './a man took the bus home.mov'
 // var outputFileName = './frames/bus_%05d.png';
@@ -73,6 +74,7 @@ function createFilmstripFromFrames (filename, framesDir, outputDir, callback) {
 		console.log(stdout);
 		console.error(stderr);
 		callback(err);
+		rimraf.sync(framesDir);
 	});
 }
 

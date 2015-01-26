@@ -9,8 +9,10 @@ var phrases = []; // will be filled in by network call
 var text;
 var subStr;
 
-DataManager.getAvailablePhrases(function (err, availablePhrases) {
-    phrases = availablePhrases;
+DataManager.getClips(function (err, clips) {
+    for (var i = 0; i < clips.length; i++) {
+        phrases.push(clips[i].phrase);
+    }
 });
 
 // try change event instead of keypress and compare values
