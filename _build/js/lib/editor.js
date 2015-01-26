@@ -2,6 +2,7 @@ var TheSpeech = require('./theSpeech');
 var Matches = require('./matches');
 var DataManager = require('./DataManager');
 var videoPlayer = require('./video/VideoPlayer');
+var isMobile = require('./isMobile');
 
 var lastKey;
 var phrases = []; // will be filled in by network call
@@ -11,8 +12,6 @@ var subStr;
 DataManager.getAvailablePhrases(function (err, availablePhrases) {
     phrases = availablePhrases;
 });
-
-var isMobile = /iphone/i.test(navigator.userAgent.toLowerCase());
 
 // try change event instead of keypress and compare values
 function init () {

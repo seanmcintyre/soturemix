@@ -1,8 +1,7 @@
 var HTMLVideoPlayer = require('./HTMLVideoPlayer');
 var JPEGVideoPlayer = require('./JPEGVideoPlayer');
 var url = require('url');
-
-var isMobile = /iphone/i.test(navigator.userAgent.toLowerCase());
+var isMobile = require('../isMobile');
 
 function VideoPlayer ($container, clipRoot) {
 	if (isMobile) {

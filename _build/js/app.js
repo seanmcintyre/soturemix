@@ -4,10 +4,10 @@ var theSpeech = require('./lib/theSpeech');
 var DataManager = require('./lib/DataManager');
 var videoPlayer  = require('./lib/video/VideoPlayer');
 var editor = require('./lib/editor');
+var isMobile = require('./lib/isMobile');
 
 videoPlayer.init($('#videoContainer'), process.env.video_root);
 
-var isMobile = /iphone/i.test(navigator.userAgent.toLowerCase());
 $(function() {
     Origami.fastclick(document.body);
 });
