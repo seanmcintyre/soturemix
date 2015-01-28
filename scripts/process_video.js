@@ -108,7 +108,7 @@ function processClip (filename, outputDir) {
 
 function handleErrorAndCleanup (err, outputDir) {
 	console.error(err);
-	fs.rmdirSync(outputDir);
+	rimraf.sync(outputDir);
 	process.exit();
 }
 

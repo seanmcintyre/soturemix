@@ -93,6 +93,18 @@ gulp.task('img', function () {
 		.pipe(gulp.dest(destPath('img')));
 });
 
+gulp.task('ingest-video', function () {
+	return gulp.src('process.env.INIT_CWD')
+		.pipe(ingestVideo({
+			appName: process.env.appName
+		}))
+		.pipe(gulp.dest('videos/master'));
+});
+
+gulp.task('get-video', function () {
+
+});
+
 gulp.task('watch', function() {
 	gulp.watch('_build/js/**', ['js']);
 	gulp.watch('_build/scss/**', ['scss']);
