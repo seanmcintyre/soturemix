@@ -6,6 +6,7 @@ var videoPlayer  = require('./lib/video/VideoPlayer');
 var editor = require('./lib/editor');
 var isMobile = require('./lib/isMobile');
 var videoFromPhrases = require('./lib/videoFromPhrases');
+var share = require('./lib/share');
 
 videoPlayer.init($('#videoContainer'), process.env.video_root);
 
@@ -33,11 +34,17 @@ $('#vamanos').on('click', function () {
 });
 
 $('#save').on('click', function () {
-    var video = videoFromPhrases(theSpeech.text);
+    if (CURRENT_VIDEO) {
+        share.initWithURL(CURRENT_VIDEO.shareURL);
+        share.show();
+    } else {
+        var video = videoFromPhrases(theSpeech.text);
 
-    DataManager.saveVideo(video, function (err, result) {
-        alert('saved with URL ' + result.shareURL);
-    });
+        DataManager.saveVideo(video, function (err, result) {
+            share.initWithURL(result.shareURL);
+            share.show();
+        });
+    }
 });
 
 function getIdFromURL () {
