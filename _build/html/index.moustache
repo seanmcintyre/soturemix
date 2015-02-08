@@ -101,6 +101,18 @@
     </div>
 </section>
 
+<section id='share' class='popover inactive'>
+    <div class='backdrop'></div>
+    <div class='content'>
+        <div class='close'></div>
+        <h1>Share it with the world!</h1>
+        <div id='share-facebook'><a href="https://www.facebook.com/sharer/sharer.php?u={$URL}" target="_blank">Share on Facebook</a></div>
+        <div id='share-twitter'><a href="https://twitter.com/share?url={$URL}" target="_blank">Share on Twitter</a></div> 
+        <div id='share-link'>Or copy and paste this link:</div>
+        <input type='text' id='share-url' value='http://sotu.co/video/i39849384384' readonly="readonly">
+    </div>
+</section>
+
 <script src="{{{static_root}}}js/fastclick.js"></script>
 <script src="{{{static_root}}}js/app.js"></script>
 </body>
