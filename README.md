@@ -1,7 +1,3 @@
 # soturemix
 
-npm install
-
-gulp build
-
-gulp serve
+This readme really needs updated!
