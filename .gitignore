@@ -3,3 +3,9 @@
 /targets
 /server/config.js
 config/credentials.json
+
+
+/videos/master/*.*
+/videos/ingested/*.*
+/videos/desktop/*.*
+/videos/mobile/*.*

@@ -3,7 +3,7 @@ var dataManager = require('./dataManager');
 var allClipsByPhrase = {};
 dataManager.getClips(function (err, clips) {
 	for (var i = 0; i < clips.length; i++) {
-		allClipsByPhrase[clips[i].phrase] = clips[i];
+		allClipsByPhrase[clips[i].name] = clips[i];
 	}
 });
 

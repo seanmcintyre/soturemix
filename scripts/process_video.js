@@ -27,7 +27,6 @@ function getFramesFromVideo (filename, outputDir, callback) {
 					.output(outputFilename)
 					.format('image2');
 
-
 	command.on('error', function (err) {
 		return callback(err);
 	});
@@ -108,7 +107,7 @@ function processClip (filename, outputDir) {
 
 function handleErrorAndCleanup (err, outputDir) {
 	console.error(err);
-	fs.rmdirSync(outputDir);
+	rimraf.sync(outputDir);
 	process.exit();
 }
 

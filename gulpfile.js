@@ -13,7 +13,10 @@ var 	gulp = require('gulp'),
 			s3 = require('gulp-s3'),
 			mustache = require("gulp-mustache-plus"),
 			child_process = require('child_process'),
-			path = require('path');
+			path = require('path'),
+			ingestVideo = require('./gulp/ingest_video'),
+			videoConverter = require('./gulp/convert_video')
+			symlink = require('gulp-symlink');
 
 function destPath (dir) {
 	return path.join(process.env.target, dir);
@@ -93,6 +96,41 @@ gulp.task('img', function () {
 		.pipe(gulp.dest(destPath('img')));
 });
 
+gulp.task('ingest-video', function () {
+	return gulp.src('videos/master/*')
+		.pipe(ingestVideo({
+			appName: process.env.appName
+		}))
+		.pipe(gulp.dest('videos/ingested'));
+});
+
+gulp.task('convert-video-mobile', function () {
+	// Convert video/audio separately
+	gulp.src('videos/ingested/*', {
+		buffer: false
+	})
+		.pipe(videoConverter.mobileAudio())
+		.pipe(gulp.dest('videos/mobile/'));
+
+	gulp.src('videos/ingested/*', {
+		buffer: false
+	})
+		.pipe(videoConverter.mobileVideo({
+			tmpDir: './tmp'
+		}))
+		.pipe(gulp.dest('videos/mobile'));
+});
+
+gulp.task('convert-video-desktop', function () {
+	return gulp.src('videos/ingested/*')
+		.pipe(gulp.dest('videos/desktop'));
+});
+
+gulp.task('symlink-video', function() {
+  return gulp.src(['videos/desktop/', 'videos/mobile/'])
+    .pipe(symlink([destPath('video/desktop'), destPath('video/mobile')]));
+});
+
 gulp.task('watch', function() {
 	gulp.watch('_build/js/**', ['js']);
 	gulp.watch('_build/scss/**', ['scss']);
@@ -123,6 +161,7 @@ gulp.task('deploy', ['build-deploy'], function () {
 			}));
 });
 
-gulp.task('build-dev', ['set-env-dev', 'scss', 'js', 'html', 'img']);
+gulp.task('build-dev', ['set-env-dev', 'scss', 'js', 'html', 'img', 'symlink-video']);
 gulp.task('build-deploy', ['set-env-deploy', 'scss', 'js', 'html', 'img']);
 gulp.task('build', ['build-dev']);
+gulp.task('convert-video', ['convert-video-desktop', 'convert-video-mobile']);
