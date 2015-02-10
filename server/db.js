@@ -29,8 +29,13 @@ mongo.MongoClient.connect(connectionString(config.mongo), function (err, connect
 });
 
 module.exports = {
-	collection: function (name) {
-		return db.collection(name);
+	collection: function (name, callback) {
+		if (!db) {
+			return callbacks.push(function () {
+				return db.collection(name, callback);
+			});
+		}
+		return db.collection(name, callback);
 	},
 	open: function (fn) {
 		callbacks.push(fn);

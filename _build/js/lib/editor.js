@@ -11,7 +11,7 @@ var subStr;
 
 DataManager.getClips(function (err, clips) {
     for (var i = 0; i < clips.length; i++) {
-        phrases.push(clips[i].phrase);
+        phrases.push(clips[i].name);
     }
 });
 

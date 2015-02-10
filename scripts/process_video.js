@@ -27,7 +27,6 @@ function getFramesFromVideo (filename, outputDir, callback) {
 					.output(outputFilename)
 					.format('image2');
 
-
 	command.on('error', function (err) {
 		return callback(err);
 	});
