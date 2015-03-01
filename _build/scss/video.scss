@@ -1,7 +1,9 @@
 header {
-	background-color:  lighten($red,10%);
+	background-color:  $red;
+	background-color: #FFF;
 	h1 {
 		color: #fff;
+		color: lighten($red,10%);
 		font-size: 24px;
 		text-align: center;
 

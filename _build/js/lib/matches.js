@@ -41,22 +41,42 @@ var matches = {
         }
     },
     findMatches: function(inputText, phrases) {
-        if (inputText !== '') {
+        if (inputText && inputText !== '') {
             this.html = '';
             var phrase;
             var foundMatch = false;
+
             for (var i = 0; i < phrases.length; i++) {
-                if (inputText.test(phrases[i]) && this.matchList.indexOf(inputText) === -1 && phrases[i].length > 0) {
+                if (inputText.test(phrases[i].toLowerCase()) && this.matchList.indexOf(inputText) === -1 && phrases[i].length > 0) {
                     phrase = phrases[i];
                     foundMatch = true;
                     this.matchList.push(phrase);
-                    if (this.checkSelected(phrase) === true) {
-                        this.html = this.html + '<li class="match selected">'+phrase+'</li>';
-                    } else {
-                        this.html = this.html + '<li class="match">'+phrase+'</li>';
-                    }
                 }
             }
+
+            this.matchList.sort(function(a, b){
+                var a = a.toLowerCase();
+                var b = b.toLowerCase();
+                if (a.length == b.length) {
+                    if (a < b) {
+                        return -1;
+                    }
+                    if (a > b) {
+                        return 1;
+                    }
+                }
+                return a.length - b.length;
+            });
+
+            for (var i = 0; i < this.matchList.length; i++) {
+                var phrase = this.matchList[i];
+                if (this.checkSelected(phrase) === true) {
+                    this.html = this.html + '<li class="match selected">'+phrase+'</li>';
+                } else {
+                    this.html = this.html + '<li class="match">'+phrase+'</li>';
+                }
+            }
+
             // If there is only one match, select it.
             if (this.matchList.length === 1) {
                 this.html = '<li class="match selected">'+phrase+'</li>';

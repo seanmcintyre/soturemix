@@ -40,7 +40,7 @@ function keyup (event) {
     Matches.matchList = [];
 
     // Loop through phrases to display matches
-    subStr = new RegExp(text);
+    subStr = new RegExp(text.toLowerCase());
     Matches.findMatches(subStr, phrases);
 
     // enter key
