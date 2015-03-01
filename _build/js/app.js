@@ -56,3 +56,5 @@ function getIdFromURL () {
         return null;
     }
 }
+
+console.log('wtf');

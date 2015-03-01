@@ -140,7 +140,7 @@ gulp.task('watch', function() {
 gulp.task('default', []);
 
 gulp.task('serve', ['build-dev', 'browser-sync'], function() {
-	child_process.fork('server/app.js', {cwd: './'});
+	//child_process.fork('server/app.js', {cwd: './'});
 
 	gulp.watch('_build/js/**', ['js']);
 	gulp.watch('_build/scss/**', ['scss']);
