@@ -77,7 +77,7 @@ function keyup (event) {
 }
 
 function selectedMatch () {
-    TheSpeech.addPhrase($(this)[0].innerText);
+    TheSpeech.addPhrase($(this)[0].textContent);
 
     if (isMobile) {
         $('.phrase-search').focus();
