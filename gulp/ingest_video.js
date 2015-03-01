@@ -1,7 +1,6 @@
 var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
-var db = require('../server/db');
 var crypto = require('crypto');
 var path = require('path');
 
@@ -54,7 +53,7 @@ function ingestVideos (options) {
 };
 
 function getVideoByChecksum(checksum, callback) {
-	db.collection('clips', function (err, collection) {
+	require('../server/db').collection('clips', function (err, collection) {
     if (err) {
       return callback(err);
     }
@@ -64,7 +63,7 @@ function getVideoByChecksum(checksum, callback) {
 }
 
 function ingestVideo (name, checksum, callback) {
-	db.collection('clips', function (err, collection) {
+	require('../server/db').collection('clips', function (err, collection) {
     if (err) {
       return callback(err);
     }

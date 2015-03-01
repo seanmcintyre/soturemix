@@ -128,7 +128,9 @@ gulp.task('convert-video-desktop', function () {
 
 gulp.task('symlink-video', function() {
   return gulp.src(['videos/desktop/', 'videos/mobile/'])
-    .pipe(symlink([destPath('video/desktop'), destPath('video/mobile')]));
+    .pipe(symlink([destPath('video/desktop'), destPath('video/mobile')], {
+    	force: true
+    }));
 });
 
 gulp.task('watch', function() {
@@ -161,7 +163,7 @@ gulp.task('deploy', ['build-deploy'], function () {
 			}));
 });
 
-gulp.task('build-dev', ['set-env-dev', 'scss', 'js', 'html', 'img', 'symlink-video']);
+gulp.task('build-dev', ['set-env-dev', 'scss', 'js', 'html', 'img']);
 gulp.task('build-deploy', ['set-env-deploy', 'scss', 'js', 'html', 'img']);
 gulp.task('build', ['build-dev']);
 gulp.task('convert-video', ['convert-video-desktop', 'convert-video-mobile']);
