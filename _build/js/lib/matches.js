@@ -41,13 +41,13 @@ var matches = {
         }
     },
     findMatches: function(inputText, phrases) {
-        if (inputText !== '') {
+        if (inputText && inputText !== '') {
             this.html = '';
             var phrase;
             var foundMatch = false;
 
             for (var i = 0; i < phrases.length; i++) {
-                if (inputText.test(phrases[i]) && this.matchList.indexOf(inputText) === -1 && phrases[i].length > 0) {
+                if (inputText.test(phrases[i].toLowerCase()) && this.matchList.indexOf(inputText) === -1 && phrases[i].length > 0) {
                     phrase = phrases[i];
                     foundMatch = true;
                     this.matchList.push(phrase);
