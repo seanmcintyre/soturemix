@@ -72,6 +72,7 @@ header {
 	background-color: #000;
 	border-radius: 5px;
 	position: relative;
+	z-index: 1;
 
 	@include MQ(M) {
 		width: 530px;
