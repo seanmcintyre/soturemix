@@ -1,11 +1,10 @@
 header {
-	background-color:  $red;
-	background-color: #FFF;
+	background-color: $blue;
 	h1 {
 		color: #fff;
-		color: lighten($red,10%);
 		font-size: 24px;
 		text-align: center;
+		font-weight: normal;
 
 		@include MQ(M) {
 			font-size: 36px;
@@ -22,7 +21,7 @@ header {
 	//border-bottom: 2px solid #b7b7b7;
 
 	@include MQ(M) {
-		padding: $p*2 0 $p*4;
+		padding: 0 0 $p*4;
 	}
 
 	.actions {
