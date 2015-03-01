@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{{hashtag}} — {{description}}</title>
- 
+
     <link rel="stylesheet" href="{{{static_root}}}css/style.css">
 
     <meta name="description" content="{{hashtag}}">
@@ -75,13 +75,13 @@
 
 <header>
     <div class="wrapper">
-        <h1 class="title">Remix the President!</h1>
+        <h1 class="title">#soturemix</h1>
     </div>
 </header>
 
 <section class="video-panel">
     <div class="wrapper">
-        <div id="videoContainer"> 
+        <div id="videoContainer">
             <div id='replayButton'><div>&#9654;</div></div>
         </div>
         <nav class="actions">
@@ -107,7 +107,7 @@
         <div class='close'></div>
         <h1>Share it with the world!</h1>
         <div id='share-facebook'><a href="https://www.facebook.com/sharer/sharer.php?u={$URL}" target="_blank">Share on Facebook</a></div>
-        <div id='share-twitter'><a href="https://twitter.com/share?url={$URL}" target="_blank">Share on Twitter</a></div> 
+        <div id='share-twitter'><a href="https://twitter.com/share?url={$URL}" target="_blank">Share on Twitter</a></div>
         <div id='share-link'>Or copy and paste this link:</div>
         <input type='text' id='share-url' value='http://sotu.co/video/i39849384384' readonly="readonly">
     </div>

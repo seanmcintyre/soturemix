@@ -14,7 +14,7 @@ var 	gulp = require('gulp'),
 			mustache = require("gulp-mustache-plus"),
 			child_process = require('child_process'),
 			path = require('path'),
-			ingestVideo = require('./gulp/ingest_video'),
+			//ingestVideo = require('./gulp/ingest_video'),
 			videoConverter = require('./gulp/convert_video')
 			symlink = require('gulp-symlink');
 
@@ -131,12 +131,6 @@ gulp.task('symlink-video', function() {
     .pipe(symlink([destPath('video/desktop'), destPath('video/mobile')], {
     	force: true
     }));
-});
-
-gulp.task('watch', function() {
-	gulp.watch('_build/js/**', ['js']);
-	gulp.watch('_build/scss/**', ['scss']);
-	gulp.watch('_build/html/**', ['html']);
 });
 
 gulp.task('default', []);
