@@ -46,7 +46,6 @@ module.exports = {
 			}
 
 			video.shareURL = shareURLForVideo(video);
-			video.phrases = video.clips;
 			callback(null, video);
 		});
 	},
