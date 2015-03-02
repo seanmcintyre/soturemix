@@ -101,7 +101,7 @@
     </div>
 </section>
 
-{{^current_video}}
+{{#current_video}}
 <section class='make-your-own'>
     <a href='/'>Make Your Own!</a>
 </section>
