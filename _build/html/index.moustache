@@ -95,13 +95,13 @@
     <div class="editor">
         <ul class="speech">
         </ul>
-        <input type="text" class="phrase-search">
+        <input type="text" class="phrase-search" placeholder='Start typing here...'>
         <ul class="matches">
         </ul>
     </div>
 </section>
 
-{{#current_video}}
+{{^current_video}}
 <section class='make-your-own'>
     <a href='/'>Make Your Own!</a>
 </section>
