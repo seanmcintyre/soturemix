@@ -101,6 +101,12 @@
     </div>
 </section>
 
+{{#current_video}}
+<section class='make-your-own'>
+    <a href='/'>Make Your Own!</a>
+</section>
+{{/current_video}}
+
 <section id='share' class='popover inactive'>
     <div class='backdrop'></div>
     <div class='content'>
@@ -112,6 +118,8 @@
         <input type='text' id='share-url' value='http://sotu.co/video/i39849384384' readonly="readonly">
     </div>
 </section>
+
+
 
 <script src="{{{static_root}}}js/fastclick.js"></script>
 <script src="{{{static_root}}}js/app.js"></script>

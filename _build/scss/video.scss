@@ -122,3 +122,23 @@ header {
   	filter: blur(3px);
   }
 }
+
+.make-your-own {
+	margin-top: 20px;
+	text-align: center;
+
+	a {
+		padding: 16px;
+		background: $blue;
+		color: white;
+		text-decoration: none;
+		border-radius: 5px;
+		display: inline-block;
+
+		transition: all .2s;
+
+		&:hover {
+			background-color: lighten($blue, 33%);
+		}
+	}
+}
